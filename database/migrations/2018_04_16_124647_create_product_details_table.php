@@ -15,7 +15,7 @@ class CreateProductDetailsTable extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('product_id');
+            $table->unsignedInteger('product_id');
             $table->integer('energy')->comment('năng lượng máy');
             $table->float('diameter')->comment('đường kính vỏ');
             $table->float('waterproof')->comment('độ chống nước ATM');
@@ -24,7 +24,8 @@ class CreateProductDetailsTable extends Migration
             $table->integer('glass')->comment('mặt kính');
             $table->integer('guarantee')->comment('năm bảo hành');
             $table->float('total_qty')->unsigned()->nullable();
-            $table->foreign('product_id')->references('id')->table('products')->onDelete('cascade');
+            $table->string('image')->nullable();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

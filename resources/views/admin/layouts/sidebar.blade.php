@@ -39,6 +39,11 @@
 				<i class="fa fa-files-o"></i> <span>TradeMark</span>
 			</a>
 		</li>
+		<li>
+			<a href="{{route('products.index')}}">
+				<i class="fa fa-files-o"></i> <span>Product</span>
+			</a>
+		</li>
 		{{-- <li class="treeview">
 		  <a href="#">
 			<i class="fa fa-files-o"></i>

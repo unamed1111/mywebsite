@@ -15,8 +15,8 @@ class CreateTrademarkCategoriesTable extends Migration
     {
         Schema::create('trademark_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
-            $table->integer('trademark_id');
+            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('trademark_id');
             $table->foreign('category_id')
                   ->references('id')->on('categories')
                   ->onDelete('cascade');

@@ -18,8 +18,8 @@ class CreateProductsTable extends Migration
             $table->timestamps();
             $table->string('product_name');
             $table->float('price');
-            $table->integer('trade_mark_id');
-            $table->integer('categories_id');
+            $table->unsignedInteger('trade_mark_id');
+            $table->unsignedInteger('categories_id');
             $table->text('description')->nullable();
             $table->foreign('trade_mark_id')
                   ->references('id')->on('trade_marks')
