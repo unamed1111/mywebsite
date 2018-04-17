@@ -32,8 +32,6 @@ Route::group(['prefix' => 'admin'], function () {
 	});
 
 	Route::resource('categories','CategoryController');
-	Route::get('/test',function(){
-		return view('admin.categories.edit');
-	});
 	Route::resource('trademarks','TradeMarkController');
+	Route::resource('products','ProductController');
 });
