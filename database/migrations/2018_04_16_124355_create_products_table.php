@@ -19,12 +19,12 @@ class CreateProductsTable extends Migration
             $table->string('product_name');
             $table->float('price');
             $table->unsignedInteger('trade_mark_id');
-            $table->unsignedInteger('categories_id');
+            $table->unsignedInteger('category_id');
             $table->text('description')->nullable();
             $table->foreign('trade_mark_id')
                   ->references('id')->on('trade_marks')
                   ->onDelete('cascade');
-            $table->foreign('categories_id')
+            $table->foreign('category_id')
                   ->references('id')->on('categories')
                   ->onDelete('cascade');
         });

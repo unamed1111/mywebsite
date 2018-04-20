@@ -33,6 +33,7 @@
                   <th>#</th>
                   <th>Name(s)</th>
                   <th>Price</th>
+                  <th>Total Quantity</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -41,6 +42,7 @@
                 <tr>
                   <td>{{ $stt++ }}</td>
                   <td>{{ $product->product_name}}</td>
+                  <td>{{ $product->price}}</td>
                   <td>{{ $product->price}}</td>
                   <td style="width: 25%">
                     <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fa fa-edit"></i> Edit</a>

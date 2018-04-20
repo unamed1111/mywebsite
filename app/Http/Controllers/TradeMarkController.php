@@ -40,12 +40,15 @@ class TradeMarkController extends Controller
     public function store(Request $request)
     {
         $trademark = TradeMark::create($request->all());
-        foreach($request->category_id as $category)
+        if(isset($request->category_id))
         {
-            TradeMarkCategory::create([
-                'trademark_id'=> $trademark->id,
-                'category_id'=> $category
-            ]);
+            foreach($request->category_id as $category)
+            {
+                TradeMarkCategory::create([
+                    'trademark_id'=> $trademark->id,
+                    'category_id'=> $category
+                ]);
+            }
         }
         return redirect()->route('trademarks.index');
     }

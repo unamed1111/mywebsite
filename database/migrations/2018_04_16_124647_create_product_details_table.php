@@ -21,10 +21,10 @@ class CreateProductDetailsTable extends Migration
             $table->float('waterproof')->comment('độ chống nước ATM');
             $table->integer('case')->comment('chất liệu vỏ');
             $table->integer('watch_chain')->comment('chất liệu dây');
-            $table->integer('glass')->comment('mặt kính');
+            $table->string('glass')->comment('mặt kính');
             $table->integer('guarantee')->comment('năm bảo hành');
             $table->float('total_qty')->unsigned()->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
