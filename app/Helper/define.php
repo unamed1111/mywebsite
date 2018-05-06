@@ -25,3 +25,18 @@ define('WATCH_CASE',[
 	5 => 'Vỏ nhựa',
 	6 => 'Hợp kim thép',
 ]);
+
+define('LEVEL',[
+	'0' => 'Admin',
+	'1' => 'Người quản lý',
+	'2' => 'Nhân Viên',
+	'3'=>'Quản kho'
+]);
+
+define('FEEDBACK_UNSEEN',0);
+define('FEEDBACK_SEEN',1);
+define('FBstatus',[
+	0 => 'Chưa xem',
+	1 => 'Đã xem'
+]);
+

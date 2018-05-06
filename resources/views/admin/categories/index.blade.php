@@ -36,9 +36,10 @@
                   <td>{{ $category->category_name }}</td>
                   <td style="width: 25%">
                     <a class="btn btn-warning" href="{{ route('categories.edit',$category->id) }}"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                 </td>
                 </tr>
+                @include('admin.elements.modal-delete',['route'=> route('categories.destroy',$category->id)])
                 @endforeach
               </table>
             </div>

@@ -6,9 +6,14 @@ use App\Models\TradeMark;
 use App\Models\Category;
 use App\Models\TradeMarkCategory;
 use Illuminate\Http\Request;
+use App\Http\Requests\TradeMarkRequest;
 
 class TradeMarkController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +42,7 @@ class TradeMarkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TradeMarkRequest $request)
     {
         $trademark = TradeMark::create($request->all());
         if(isset($request->category_id))
@@ -85,7 +90,7 @@ class TradeMarkController extends Controller
      * @param  \App\Models\TradeMark  $tradeMark
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TradeMarkRequest $request, $id)
     {   
         $trademark = TradeMark::find($id);
         $trademark->update($request->all());

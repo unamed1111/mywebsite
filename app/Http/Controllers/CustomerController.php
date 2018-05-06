@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::all();
+        return view('admin.customers.index',compact('customers'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.customers.create');
     }
 
     /**
@@ -35,7 +36,20 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        $img = [];
+        if(isset($input['avatar'])) {
+                    $file = $input['avatar'];
+                    $fileName = uniqid('_customer') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/customer/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
+            }
+        $data['image'] = json_encode($img);
+        $data['dob'] = date('Y/m/d H:i:s',strtotime($data['dob']));
+        $customer = Customer::create($data);
+        return redirect()->route('customers.index');
     }
 
     /**
@@ -55,9 +69,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('admin.customers.edit',compact('customer'));
     }
 
     /**
@@ -67,9 +82,24 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request,$id)
     {
-        //
+        $data = $request->except('_token');
+        $img = [];
+        if(isset($data['avatar'])) {
+                    $file = $data['avatar'];
+                    $fileName = uniqid('_customer') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/customer/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
+            }
+        $data['image'] = json_encode($img);
+        $data['dob'] = date('Y-m-d H:i:s',strtotime($data['dob']));
+        $customer = Customer::find($id);
+        $customer->update($data);
+        return redirect()->route('customers.index');
+
     }
 
     /**
@@ -78,8 +108,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        $customer->delete();
+        return redirect()->route('customers.index');
     }
 }

@@ -5,25 +5,25 @@
     <link rel="stylesheet" href="{{ asset( '/for_admin_page/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
 @endsection
 @section('content')
-	 <div class="content-wrapper">
+   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Product page
+        FeedBack
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product</li>
+        <li class="active">FeedBack</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-    		<div class="box">
+        <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Product</h3>
-              <a class="btn btn-success pull-right" href="{{route('products.create')}}">Add</a>
+              <h3 class="box-title">FeedBack</h3>
+              {{-- <a class="btn btn-success pull-right" href="{{route('feedbacks.create')}}">Add</a> --}}
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -32,24 +32,26 @@
                 <tr>
                   <th>#</th>
                   <th>Name(s)</th>
-                  <th>Price</th>
-                  <th>Total Quantity</th>
+                  <th>Email</th>
+                  <th>Content</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
-                @foreach($products as $product)
+                @foreach($feedbacks as $feedback)
                 <tr>
                   <td>{{ $stt++ }}</td>
-                  <td>{{ $product->product_name}}</td>
-                  <td>{{ $product->price}}</td>
-                  <td>{{ $product->detail->total_qty}}</td>
+                  <td>{{ $feedback->username}}</td>
+                  <td>{{ $feedback->email}}</td>
+                  <td>{{ $feedback->content}}</td>
+                  <td>{{ FBstatus[$feedback->status]}}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                    <a class="btn btn-primary" href="{{route('feedbacks.show',$feedback->id)}}"><i class="fa fa-eye"></i> Show</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
-                @include('admin.elements.modal-delete',['route'=> route('products.destroy',$product->id)])
+                @include('admin.elements.modal-delete',['route'=> route('feedbacks.destroy',$feedback->id)])
                 @endforeach
               </table>
             </div>
