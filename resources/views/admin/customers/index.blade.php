@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Product page
+        Customer page
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product</li>
+        <li class="active">Customer</li>
       </ol>
     </section>
 
@@ -22,8 +22,8 @@
     <section class="content">
     		<div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Product</h3>
-              <a class="btn btn-success pull-right" href="{{route('products.create')}}">Add</a>
+              <h3 class="box-title">Customer</h3>
+              <a class="btn btn-success pull-right" href="{{route('customers.create')}}">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -32,24 +32,26 @@
                 <tr>
                   <th>#</th>
                   <th>Name(s)</th>
-                  <th>Price</th>
-                  <th>Total Quantity</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Address</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
-                @foreach($products as $product)
+                @foreach($customers as $customer)
                 <tr>
                   <td>{{ $stt++ }}</td>
-                  <td>{{ $product->product_name}}</td>
-                  <td>{{ $product->price}}</td>
-                  <td>{{ $product->detail->total_qty}}</td>
+                  <td>{{ $customer->customer_name}}</td>
+                  <td>{{ $customer->email}}</td>
+                  <td>{{ $customer->phone}}</td>
+                  <td>{{ $customer->address}}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                    <a class="btn btn-warning" href="{{route('customers.edit',$customer->id)}}"><i class="fa fa-edit"></i> Edit</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
-                @include('admin.elements.modal-delete',['route'=> route('products.destroy',$product->id)])
+                @include('admin.elements.modal-delete',['route'=> route('customers.destroy',$customer->id)])
                 @endforeach
               </table>
             </div>

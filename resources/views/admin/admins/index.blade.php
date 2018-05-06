@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Product page
+        Admin page
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Product</li>
+        <li class="active">Admin</li>
       </ol>
     </section>
 
@@ -22,8 +22,8 @@
     <section class="content">
     		<div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Product</h3>
-              <a class="btn btn-success pull-right" href="{{route('products.create')}}">Add</a>
+              <h3 class="box-title">Admin</h3>
+              <a class="btn btn-success pull-right" href="{{route('admins.create')}}">Add</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,25 +31,25 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name(s)</th>
-                  <th>Price</th>
-                  <th>Total Quantity</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Level</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
-                @foreach($products as $product)
+                @foreach($admins as $admin)
                 <tr>
                   <td>{{ $stt++ }}</td>
-                  <td>{{ $product->product_name}}</td>
-                  <td>{{ $product->price}}</td>
-                  <td>{{ $product->detail->total_qty}}</td>
+                  <td>{{ $admin->name}}</td>
+                  <td>{{ $admin->email}}</td>
+                  <td>{{ LEVEL[$admin->level]}}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-warning" href="{{route('products.edit',$product->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                    <a class="btn btn-warning" href="{{route('admins.edit',$admin->id)}}"><i class="fa fa-edit"></i> Edit</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                   </td>
                 </tr>
-                @include('admin.elements.modal-delete',['route'=> route('products.destroy',$product->id)])
+                @include('admin.elements.modal-delete',['route'=> route('admins.destroy',$admin->id)])
                 @endforeach
               </table>
             </div>

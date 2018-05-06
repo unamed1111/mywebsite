@@ -26,15 +26,20 @@
                   <form role="form" action="{{route('trademarks.store')}}" method="POST">
                     @csrf
                     <div class="box-body">
-                      <div class="form-group">
+                      <div class="form-group {{ $errors->has('trademark_name') ? 'has-error' : "" }}">
                         <label for="trademark_name">Tên thương hiệu</label>
                         <input type="text" name="trademark_name" class="form-control" id="trademark_name" placeholder="Tên thương hiệu">
+                        @if($errors->has('trademark_name'))
+                          <span class="help-block">
+                            <strong>{{$errors->first('trademark_name')}}</strong>
+                          </span>
+                        @endif
                       </div>
                       <div class="form-group">
                         <textarea class="textarea" placeholder="Description"
                                   style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="description"></textarea>
                       </div>
-                      <div class="form-group">
+                      <div class="form-group {{ $errors->has('category_id') ? 'has-error' : "" }}">
                         @foreach($categories as $category)
                           <div class="checkbox">
                             <label>
@@ -43,6 +48,11 @@
                             </label>
                           </div>
                         @endforeach
+                        @if($errors->has('category_id'))
+                            <span class="help-block">
+                              <strong>{{$errors->first('category_id')}}</strong>
+                            </span>
+                        @endif
                       </div>
                     </div>
                     <!-- /.box-body -->

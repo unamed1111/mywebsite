@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\TradeMark;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
 
 class ProductController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+   
     public function index()
     {
         $products = Product::all();
@@ -25,7 +35,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $categories = Category::all();
+        $trademarks = TradeMark::all();
+        return view('admin.products.create',compact('categories','trademarks'));
     }
 
     /**
@@ -34,9 +46,27 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+
+        $input = $request->all();
+        $detail = $request->except('_token','product_name','price','category_id','trade_mark_id','description');
+        $product = Product::create($input);
+        $img = [];
+        if(isset($input['image'])) {
+                foreach($input['image'] as $image)
+                {
+                    $file = $image;
+                    $fileName = uniqid('_product') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/product/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
+                }
+            }
+        $detail['image'] = json_encode($img);
+        $product->detail()->create($detail);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -56,9 +86,12 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        return view('admin.products.edit');;
+        $categories = Category::all();
+        $trademarks = TradeMark::all();
+        $product = Product::with('detail')->find($id);
+        return view('admin.products.edit',compact('product','categories','trademarks'));
     }
 
     /**
@@ -68,9 +101,27 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request,$id)
     {
-        //
+        $input = $request->all();
+        $detail = $request->except('_token','_method','product_name','price','category_id','trade_mark_id','description');
+        $product = Product::find($id);
+        $product->update($input);
+        $img = [];
+        if(isset($input['image'])) {
+                foreach($input['image'] as $image)
+                {
+                    $file = $image;
+                    $fileName = uniqid('_product') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/product/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
+                }
+            }
+        $detail['image'] = json_encode($img);
+        $product->detail()->update($detail);
+        return redirect()->route('products.index');
     }
 
     /**
@@ -79,8 +130,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+        DB::transaction(function () {
+            $product->detail->delete();
+            $product->delete();
+        });
+       
+        return redirect()->route('products.index');
     }
 }

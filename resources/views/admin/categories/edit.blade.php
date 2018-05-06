@@ -27,9 +27,14 @@
                     @csrf
                     @method('PUT')
                     <div class="box-body">
-                      <div class="form-group">
+                      <div class="form-group {{ $errors->has('category_name') ? "has-error" : ""}}">
                         <label for="exampleInputEmail1">Tên danh mục</label>
                         <input type="text" name="category_name" class="form-control" id="category_name" placeholder="Category" value="{{ $category->category_name}}">
+                        @if($errors->has('category_name'))
+                        <span class="help-block">
+                          <strong>{{$errors->first('category_name')}}</strong>
+                        </span>
+                        @endif
                       </div>
                     </div>
                     <!-- /.box-body -->

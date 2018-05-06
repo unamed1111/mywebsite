@@ -44,6 +44,21 @@
 				<i class="fa fa-files-o"></i> <span>Product</span>
 			</a>
 		</li>
+		<li>
+			<a href="{{route('feedbacks.index')}}">
+				<i class="fa fa-files-o"></i> <span>Feedback</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('customers.index')}}">
+				<i class="fa fa-files-o"></i> <span>Customer</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('admins.index')}}">
+				<i class="fa fa-files-o"></i> <span>Admin</span>
+			</a>
+		</li>
 		{{-- <li class="treeview">
 		  <a href="#">
 			<i class="fa fa-files-o"></i>
