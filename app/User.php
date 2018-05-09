@@ -18,6 +18,10 @@ class User extends Authenticatable
         'name', 'email', 'password','level'
     ];
 
+    protected $attributes = [
+        'level' => 0 
+    ];
+
     /**
      * The attributes that should be hidden for arrays.
      *

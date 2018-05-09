@@ -66,7 +66,8 @@ class TradeMarkController extends Controller
      */
     public function show($id)
     {
-        //
+        $trademark = TradeMark::find($id);
+        return view('admin.trademarks.show',compact('trademark'));
     }
 
     /**
