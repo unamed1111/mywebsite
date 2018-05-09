@@ -31,7 +31,7 @@ Route::group(['prefix' => 'frontend'], function () {
 
 
 // Admin by Tudm
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
 	Route::get('/',function(){
 		return view('admin.index');
 	});
@@ -39,4 +39,11 @@ Route::group(['prefix' => 'admin'], function () {
 	Route::resource('categories','CategoryController');
 	Route::resource('trademarks','TradeMarkController');
 	Route::resource('products','ProductController');
+	Route::resource('customers','CustomerController');
+	Route::resource('admins','AdminController');
+	Route::resource('feedbacks','FeedBackController');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

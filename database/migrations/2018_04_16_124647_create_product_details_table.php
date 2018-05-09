@@ -19,12 +19,12 @@ class CreateProductDetailsTable extends Migration
             $table->integer('energy')->comment('năng lượng máy');
             $table->float('diameter')->comment('đường kính vỏ');
             $table->float('waterproof')->comment('độ chống nước ATM');
-            $table->text('case')->comment('chất liệu vỏ');
-            $table->text('watch_chain')->comment('chất liệu dây');
-            $table->integer('glass')->comment('mặt kính');
+            $table->integer('case')->comment('chất liệu vỏ');
+            $table->integer('watch_chain')->comment('chất liệu dây');
+            $table->string('glass')->comment('mặt kính');
             $table->integer('guarantee')->comment('năm bảo hành');
             $table->float('total_qty')->unsigned()->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });

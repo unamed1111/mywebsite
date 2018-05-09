@@ -12,4 +12,5 @@ class Category extends Model
     {
     	return $this->belongsToMany(TradeMark::class,'trademark_categories','category_id','id');
     }
+    // adasd
 }

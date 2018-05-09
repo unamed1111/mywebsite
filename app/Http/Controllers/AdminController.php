@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
-class TestController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $admins = User::all();
+        return view('admin.admins.index',compact('admins'));
     }
 
     /**
@@ -23,7 +25,7 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admins.create');
     }
 
     /**
@@ -34,7 +36,9 @@ class TestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        User::create($data);
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -56,7 +60,8 @@ class TestController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = User::find($id);
+        return view('admin.admins.edit',compact('admin'));
     }
 
     /**
@@ -68,7 +73,10 @@ class TestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->only('name','email','level');
+        $admin = User::find($id);
+        $admin->update($data);
+        return redirect()->route('admins.index');
     }
 
     /**
@@ -79,6 +87,8 @@ class TestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = User::find($id);
+        $admin->delete();
+        return redirect()->route('admins.index');
     }
 }

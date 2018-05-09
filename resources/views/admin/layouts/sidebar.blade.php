@@ -7,7 +7,7 @@
 		  <img src="{{ asset( '/for_admin_page/dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
 		</div>
 		<div class="pull-left info">
-		  <p>Tú dm</p>
+		  <p>{{Auth::user()->name}}</p>
 		  <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
 		</div>
 	  </div>
@@ -31,17 +31,32 @@
 		</li>
 		<li>
 			<a href="{{route('categories.index')}}">
-				<i class="fa fa-files-o"></i> <span>Category</span>
+				<i class="fa fa-files-o"></i> <span>Danh mục</span>
 			</a>
 		</li>
 		<li>
 			<a href="{{route('trademarks.index')}}">
-				<i class="fa fa-files-o"></i> <span>TradeMark</span>
+				<i class="fa fa-leaf"></i> <span>Thương hiệu</span>
 			</a>
 		</li>
 		<li>
 			<a href="{{route('products.index')}}">
-				<i class="fa fa-files-o"></i> <span>Product</span>
+				<i class="fa fa-certificate"></i> <span>Sản Phẩm</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('feedbacks.index')}}">
+				<i class="fa fa-comments"></i> <span>Phản hồi của khách hàng</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('customers.index')}}">
+				<i class="fa fa-user"></i> <span>Khách hàng</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('admins.index')}}">
+				<i class="fa fa-user-secret"></i> <span>Admin</span>
 			</a>
 		</li>
 		{{-- <li class="treeview">

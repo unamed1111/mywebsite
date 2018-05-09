@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['product_name','price','trade_mark_id','categories_id','description'];
+    protected $fillable = ['product_name','price','trade_mark_id','category_id','description'];
 
     public function trademark()
     {
@@ -15,7 +15,7 @@ class Product extends Model
 
     public function category()
     {
-    	return $this->belongsTo(Category::class,'categories_id','id');
+    	return $this->belongsTo(Category::class,'category_id','id');
     }
 
     public function detail()
