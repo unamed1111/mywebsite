@@ -41,6 +41,7 @@
                   <td>{{ $stt++ }}</td>
                   <td>{{ $trademark->trademark_name}}</td>
                   <td style="width: 25%">
+                    <a class="btn btn-primary" href="{{route('trademarks.show',$trademark->id)}}" ><i class="fa fa-eye"></i> Show</a>
                     <a class="btn btn-warning" href="{{route('trademarks.edit',$trademark->id)}}"><i class="fa fa-edit"></i> Edit</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                   </td>

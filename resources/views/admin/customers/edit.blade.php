@@ -32,6 +32,23 @@
                     @method('PUT')
                     <div class="box-body">
                       {{-- form-in-here --}}
+                        <div class="row">
+                          <div class="col-md-4 {{ $errors->has('avatar') ? 'has-error' : "" }}">
+                              <label for="avatar" class="control-label">{{ __('Ảnh 1') }}</label>
+                              <div class="img-preview">
+                                  <input type="file" class="image image-upload" name="avatar" value="">
+                                  <a class="example-image-link" href="" data-lightbox="example-6" data-title="">
+                                  <img src="{{ $customer->avatar ? json_decode($customer->avatar) :asset('/images/home/gallery1.jpg') }}" class="img-preview img-fluid", alt="" width="100px" height="100px">
+                                  </a>
+                              </div>
+                               @if($errors->has('avatar'))
+                                  <span class="help-block">
+                                    <strong>{{$errors->first('avatar')}}</strong>
+                                  </span>
+                                @endif
+                            </div>
+                          <div class="col-md-8"></div>
+                          </div>
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('customer_name') ? 'has-error' : "" }}">
@@ -137,20 +154,7 @@
                             @endif
                           </div>
                         </div>
-                         <div class="col-md-4 {{ $errors->has('avatar') ? 'has-error' : "" }}">
-                            <label for="avatar" class="control-label">{{ __('Ảnh 1') }}</label>
-                            <div class="img-preview">
-                                <input type="file" class="image image-upload" name="avatar" value=" {{ json_decode($customer->avatar )}}">
-                                <a class="example-image-link" href="" data-lightbox="example-6" data-title="">
-                                <img src="" class="img-preview img-fluid", alt="" width="100px" height="100px">
-                                </a>
-                            </div>
-                             @if($errors->has('avatar'))
-                                <span class="help-block">
-                                  <strong>{{$errors->first('avatar')}}</strong>
-                                </span>
-                              @endif
-                          </div>
+                         
                       </div> 
                        
                       

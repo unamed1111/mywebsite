@@ -23,8 +23,8 @@
     		<div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Admin</h3>
-              @cannot(Auth()->user())
-              <a class="btn btn-success pull-right" href="{{route('admins.create')}}">Add</a>
+              @can('admin',auth()->user())
+              <a class="btn btn-success pull-right" href="{{route('admins.create')}}">Thêm</a>
               @endcan
             </div>
             <!-- /.box-header -->
@@ -33,10 +33,12 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name</th>
+                  <th>Tên</th>
                   <th>Email</th>
-                  <th>Level</th>
-                  <th>Action</th>
+                  <th>Chức Vụ</th>
+                  @can('admin',auth()->user())
+                    <th>Hành động</th>
+                  @endcan
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
@@ -47,9 +49,9 @@
                   <td>{{ $admin->email}}</td>
                   <td>{{ LEVEL[$admin->level]}}</td>
                   <td style="width: 25%">
-                    @cannot(Auth()->user())
-                    <a class="btn btn-warning" href="{{route('admins.edit',$admin->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
+                    @can('admin',auth()->user())
+                      <a class="btn btn-warning" href="{{route('admins.edit',$admin->id)}}"><i class="fa fa-edit"></i> Edit</a>
+                      <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                     @endcan
                   </td>
                 </tr>
