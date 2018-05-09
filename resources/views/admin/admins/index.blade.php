@@ -23,7 +23,9 @@
     		<div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Admin</h3>
+              @cannot(Auth()->user())
               <a class="btn btn-success pull-right" href="{{route('admins.create')}}">Add</a>
+              @endcan
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -45,8 +47,10 @@
                   <td>{{ $admin->email}}</td>
                   <td>{{ LEVEL[$admin->level]}}</td>
                   <td style="width: 25%">
+                    @cannot(Auth()->user())
                     <a class="btn btn-warning" href="{{route('admins.edit',$admin->id)}}"><i class="fa fa-edit"></i> Edit</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
+                    @endcan
                   </td>
                 </tr>
                 @include('admin.elements.modal-delete',['route'=> route('admins.destroy',$admin->id)])

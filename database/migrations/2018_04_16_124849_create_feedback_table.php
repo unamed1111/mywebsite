@@ -17,7 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->increments('id');
             $table->string('username')->nullable();
             $table->string('email')->nullable();
-            $table->string('content');
+            $table->text('content');
             $table->integer('status')->default(0)->comment('0: Chưa xem, 1: Đã xem');
             $table->timestamps();
         });

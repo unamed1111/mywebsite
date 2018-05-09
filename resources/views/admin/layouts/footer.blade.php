@@ -1,7 +1,6 @@
  <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
+      created by <b> Tudm </b> 
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
+    <strong>Copyright &copy; <a href="#">Rolex Website</a>.</strong> Time is gold.
   </footer>
