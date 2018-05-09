@@ -24,9 +24,9 @@ Route::get('/list',function(){
 });
 */
 Route::group(['prefix' => 'frontend'], function () {
-	Route::get('/','HomeController@index');
-	Route::get('list','HomeController@list');
-	Route::get('product', 'HomeController@product');
+	Route::get('/','FrontentController@index');
+	Route::get('list','FrontentController@list');
+	Route::get('product', 'FrontentController@product');
 });
 
 

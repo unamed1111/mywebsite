@@ -11,9 +11,7 @@
             thương hiệu
           </a>
           <ul class="dropdown-menu" role="menu">
-            @foreach ($trademarks as $trademarks)
-            <li><a href="#">{{$trademarks->trademark_name}}</a></li>
-            @endforeach
+            aaaaaaaaa
           </ul>
         </li>
         <li class="dropdown">

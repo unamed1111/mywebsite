@@ -6,9 +6,6 @@
             <div class="box1">
               <div class="leftTexttitle"> Thương hiệu</div>
               
-              @foreach ($trademarks as $trademarks)
-                <div class="leftText"><a href="" class="boldText">{{$trademarks->trademark_name}}</a></div>
-              @endforeach
               <div class="leftText"> <span class="boldText">Duis cursus tortor.</span></div>
               <div class="clear"></div>
             </div>
