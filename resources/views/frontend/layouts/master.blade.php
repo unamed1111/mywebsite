@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+</head>
     @include('frontend.layouts.header')
     <body>
     @include('frontend.layouts.navbar')
