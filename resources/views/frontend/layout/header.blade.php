@@ -7,11 +7,11 @@
   <ul class="nav nav-tabs">
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <div class="bibau">thương hiệu</div>
+            <div class="bibau">Thương hiệu</div>
           </a>
           <ul class="dropdown-menu" role="menu">
-          @foreach($trademarks as $trademarks)
-            <li><a href="#">{{$trademarks->trademark_name}}</a></li>
+          @foreach($trademarks as $trademark)
+            <li><a href="#">{{$trademark->trademark_name}}</a></li>
           @endforeach
           </ul>
         </li>

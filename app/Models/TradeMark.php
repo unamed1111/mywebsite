@@ -10,6 +10,6 @@ class TradeMark extends Model
 
     public function category()
     {
-    	return $this->belongsToMany(Category::class,'trademark_categories','trademark_id','id');
+    	return $this->belongsToMany(Category::class,'trademark_categories','trademark_id','category_id');
     }
 }
