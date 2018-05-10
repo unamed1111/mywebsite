@@ -31,10 +31,10 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name(s)</th>
+                  <th>Tên khách hàng</th>
                   <th>Email</th>
-                  <th>Content</th>
-                  <th>Status</th>
+                  <th>Trạng thái</th>
+                  <th>Ngày gửi</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -44,8 +44,8 @@
                   <td>{{ $stt++ }}</td>
                   <td>{{ $feedback->username}}</td>
                   <td>{{ $feedback->email}}</td>
-                  <td>{{ $feedback->content}}</td>
                   <td>{{ FBstatus[$feedback->status]}}</td>
+                  <td>{{ $feedback->created_at}}</td>
                   <td style="width: 25%">
                     <a class="btn btn-primary" href="{{route('feedbacks.show',$feedback->id)}}"><i class="fa fa-eye"></i> Show</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>

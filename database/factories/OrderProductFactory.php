@@ -13,10 +13,10 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(App\Models\FeedBack::class, function (Faker $faker) {
+$factory->define(App\Models\OrderProduct::class, function (Faker $faker) {
     return [
-        'username' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'content' =>$faker->text
+        'product_id' => rand(1,30),
+        'qty' => rand(1, 5),
+        'discount' =>rand(5, 20),
     ];
 });

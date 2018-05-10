@@ -36,5 +36,8 @@ class DatabaseSeeder extends Seeder
         factory(App\Models\Product::class,100)->create()->each(function($u){
             $u->detail()->save(factory(App\Models\ProductDetail::class)->make());
         });
+        factory(App\Models\Order::class,30)->create()->each(function($u){
+            $u->detail()->saveMany(factory(App\Models\OrderProduct::class,rand(1,5))->make());
+        });;
     }
 }
