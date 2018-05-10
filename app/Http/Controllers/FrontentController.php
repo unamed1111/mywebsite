@@ -11,12 +11,12 @@ class FrontentController extends Controller
 {
     public function index()
     {
-        //$products = Product::all();
         $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
 
         return view('frontend.trangchu')->with([
-            //'products' => $products,
             'trademarks' => $trademarks,
+            'categories' => $categories,
         ]);
 
     }

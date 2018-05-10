@@ -4,6 +4,6 @@
 @include('frontend.layout.banner')
 @endsection
 
-@section('nav')
-@include('frontend.layout.nav')
+@section('underbanner')
+@include('frontend.layout.underbanner')
 @endsection

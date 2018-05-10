@@ -5,60 +5,30 @@
 <div class="container">
 <div class="row">
   <ul class="nav nav-tabs">
-        <li><a href="#">trang chủ</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            thương hiệu
+            <div class="bibau">thương hiệu</div>
           </a>
           <ul class="dropdown-menu" role="menu">
-            aaaaaaaaa
+          @foreach($trademarks as $trademarks)
+            <li><a href="#">{{$trademarks->trademark_name}}</a></li>
+          @endforeach
           </ul>
         </li>
+        @foreach($categories as $category)
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            đồng hồ nam
+            <div class="bibau">{{$category->category_name}}</div>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+          @foreach($category->trademark as $trademark)
+            <li><a href="#">{{$trademark->trademark_name}}</a></li>
+          @endforeach
           </ul>
         </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            đồng hồ nữ
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            aaaaaaaa
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            đồng hồ đôi
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            đồng hồ trẻ em
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
+        @endforeach
       </ul>
     </div>
   </div>
 </div>
+<div class="clear"></div>
