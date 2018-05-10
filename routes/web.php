@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function () {
     return view('frontend.index');
 });
@@ -22,7 +22,17 @@ Route::get('/product',function(){
 Route::get('/list',function(){
 	return view('frontend.list');
 });
+*/
+Route::group(['prefix' => 'frontend'], function () {
+	Route::get('/','FrontentController@index');
+	Route::get('list','FrontentController@list');
+	Route::get('products','FrontentController@products');
+	Route::get('details','FrontentController@details');
+	Route::get('checkout','FrontentController@checkout');
+	Route::get('cart','FrontentController@cart');
+	Route::get('thankyou','FrontentController@thankyou');
 
+});
 
 
 // Admin by Tudm
