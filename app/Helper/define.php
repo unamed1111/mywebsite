@@ -40,3 +40,8 @@ define('FBstatus',[
 	1 => 'Đã xem'
 ]);
 
+define('PAYMENT_METHOD',[
+	0 => 'Ship COD',
+	1 => 'Thannh toán bằng VISA'
+]);
+

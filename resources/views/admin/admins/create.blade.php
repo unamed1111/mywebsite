@@ -5,13 +5,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Create
+          Tạo mới
           <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
           <li class="active">Admin</li>
-          <li class="active">Create</li>
+          <li class="active">Tạo mới</li>
         </ol>
       </section>
 
@@ -54,7 +54,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group{{ $errors->has('password') ? 'has-error' : "" }} ">
-                            <label for="password">Password</label>
+                            <label for="password">Mật khẩu</label>
                             <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="{{ old('password') }}">
                             @if($errors->has('password'))
                               <span class="help-block">
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group{{ $errors->has('password_confirm') ? 'has-error' : "" }} ">
-                            <label for="password_confirm">Password Comfirm</label>
+                            <label for="password_confirm">Nhập lại lại mật khẩu</label>
                             <input type="password" name="password_confirm" class="form-control" id="password_confirm" placeholder="Password Confirm" value="{{ old('password_confirm') }}">
                             @if($errors->has('password_confirm'))
                               <span class="help-block">
@@ -78,7 +78,7 @@
                       <div class="row">
                         <div class="col-md-2">
                           <div class="form-group">
-                            <label for="level">Level</label>
+                            <label for="level">Chức vụ</label>
                             <select name="level" id="level" class="form-control select2">
                               @foreach(LEVEL as $key => $entry  )
                               <option value="{{$key}}">{{$entry}}</option>
@@ -91,7 +91,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                      <button type="submit" class="btn btn-primary">Create</button>
+                      <button type="submit" class="btn btn-primary">Tạo mới</button>
                     </div>
                 </form>
               </div>

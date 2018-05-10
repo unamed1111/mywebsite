@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="/admin/index2.html" class="logo">
+    <a href="/admin" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>R</b>fA</span>
       <!-- logo for regular state and mobile devices -->
@@ -138,7 +138,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div> --}}
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Đăng xuất</a>
+                  <a href="{{route('logout')}}" class="btn btn-default btn-flat">Đăng xuất</a>
                 </div>
               </li>
             </ul>

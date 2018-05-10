@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        TradeMark page
+        Quản lý đơn hàng
         <small>it all starts here</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Trade Mark</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active">Đơn hàng</li>
       </ol>
     </section>
 
@@ -22,31 +22,37 @@
     <section class="content">
     		<div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">TradeMark</h3>
-              <a class="btn btn-success pull-right" href="{{route('trademarks.create')}}">Add</a>
+              <h3 class="box-title">Đơn hàng</h3>
+              {{-- <a class="btn btn-success pull-right" href="{{route('orders.create')}}">Thêm</a> --}}
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th>Name(s)</th>
-                  <th>Action</th>
+                  <th>Mã đơn hàng</th>
+                  <th>Tên khách hàng</th>
+                  <th>Tổng tiền</th>
+                  <th>Phương thức thanh toán</th>
+                  <th>Ngày mua hàng</th>
+                  <th>Hành động</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
-                @foreach($trademarks as $trademark)
+                @foreach($orders as $order)
                 <tr>
-                  <td>{{ $stt++ }}</td>
-                  <td>{{ $trademark->trademark_name}}</td>
+                  <td>{{ "ĐH".$order->id }}</td>
+                  <td>{{ $order->customer_name ? $order->customer_name : "" }}</td>
+                  <td>{{ $order->billing_total}}</td>
+                  <td>{{ PAYMENT_METHOD[$order->payment_method]}}</td>
+                  <td>{{ $order->created_at }}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-primary" href="{{route('trademarks.show',$trademark->id)}}" ><i class="fa fa-eye"></i> Show</a>
-                    <a class="btn btn-warning" href="{{route('trademarks.edit',$trademark->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
+                    <a class="btn btn-primary" href="{{route('orders.show',$order->id)}}"><i class="fa fa-edit"></i> Xem</a>
+                    {{-- <a class="btn btn-warning" href="{{route('orders.edit',$order->id)}}"><i class="fa fa-edit"></i> Sửa</a> --}}
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Xoá</a>
                   </td>
                 </tr>
-                @include('admin.elements.modal-delete',['route'=> route('trademarks.destroy',$trademark->id)])
+                @include('admin.elements.modal-delete',['route'=> route('orders.destroy',$order->id)])
                 @endforeach
               </table>
             </div>

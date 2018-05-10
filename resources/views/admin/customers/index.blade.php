@@ -47,6 +47,7 @@
                   <td>{{ $customer->phone}}</td>
                   <td>{{ $customer->address}}</td>
                   <td style="width: 25%">
+                    <a class="btn btn-primary" href="{{route('customers.show',$customer->id)}}"><i class="fa fa-eye"></i> Edit</a>
                     <a class="btn btn-warning" href="{{route('customers.edit',$customer->id)}}"><i class="fa fa-edit"></i> Edit</a>
                     <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
                   </td>

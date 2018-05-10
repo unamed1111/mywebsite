@@ -47,8 +47,13 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
 	Route::resource('customers','CustomerController');
 	Route::resource('admins','AdminController');
 	Route::resource('feedbacks','FeedBackController');
+	Route::resource('orders','OrderController');
+
 });
+
+Route::get('/login', 'HomeController@index')->name('login');
+Route::get('/logout','Auth\LoginController@logout')->name('logout');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+

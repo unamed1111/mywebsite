@@ -4,7 +4,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Delete</h4>
+        <h4 class="modal-title">Xoá</h4>
       </div>
       <div class="modal-body">
         <p>Bạn có thực sự muốn xoá dữ liệu này&hellip;</p>
@@ -13,8 +13,8 @@
       	<form action="{{$route}}" method="POST">
       		@csrf
       		@method('DELETE')
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Đóng</button>
+        <button type="submit" class="btn btn-primary">Xoá</button>
       	</form>
       </div>
     </div>

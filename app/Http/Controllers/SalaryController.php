@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Salary;
 use Illuminate\Http\Request;
-use App\Models\Order;
-use App\Models\OrderProduct;
 
-class OrderController extends Controller
+class SalaryController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +14,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
-        return view('admin.orders.index',compact('orders'));
+        //
     }
 
     /**
@@ -39,7 +33,7 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OrderRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -47,23 +41,21 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $Order
+     * @param  \App\Salary  $salary
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Salary $salary)
     {
-        $order = Order::find($id);
-        $order_products = OrderProduct::where('order_id',$id)->with('product')->get();
-        return view('admin.orders.show',compact('order','order_products'));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Order  $Order
+     * @param  \App\Salary  $salary
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Salary $salary)
     {
         //
     }
@@ -72,10 +64,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $Order
+     * @param  \App\Salary  $salary
      * @return \Illuminate\Http\Response
      */
-    public function update(Resquest $request, $id)
+    public function update(Request $request, Salary $salary)
     {
         //
     }
@@ -83,16 +75,11 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $Order
+     * @param  \App\Salary  $salary
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Salary $salary)
     {
-
-        $order = Order::find($id);
-        $order_products = OrderProduct::where('order_id',$id);
-        $order->delete();
-        $order_products->delete();
-        return redirect()->route('orders.index');
+        //
     }
 }

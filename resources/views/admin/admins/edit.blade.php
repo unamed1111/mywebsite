@@ -5,13 +5,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Edit
+          Sửa
           <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
           <li class="active">Admin</li>
-          <li class="active">Edit</li>
+          <li class="active">Sửa</li>
         </ol>
       </section>
 
@@ -31,7 +31,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('name') ? 'has-error' : "" }}">
-                            <label for="name">Customer Name</label>
+                            <label for="name">Admin Name</label>
                             <input type="text" name="name" class="form-control" id="name" placeholder="Admin Name" value="{{ $admin->name }}">
                             @if($errors->has('name'))
                               <span class="help-block">
@@ -79,7 +79,7 @@
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
-                            <label for=""></label>
+                            <label for="">Chức vụ</label>
                             <select name="level" id="level" class="form-control select2">
                               @foreach(LEVEL as $key => $entry  )
                               <option value="{{$key}}" {{$admin->level == $key ? "selected" : "" }}>{{$entry}}</option>
@@ -92,7 +92,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                      <button type="submit" class="btn btn-primary">Edit</button>
+                      <button type="submit" class="btn btn-primary">Sửa</button>
                     </div>
                 </form>
               </div>
