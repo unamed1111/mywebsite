@@ -217,6 +217,13 @@
                       @endforeach  
                       </div>
                       {{-- endimage --}}
+                      {{-- editor --}}
+                      <div class="box-body pad form-group">
+                        <label for="content">Content</label>
+                        <textarea id="editer" name="content" rows="10" cols="80">{{old('content',$product->detail->content)}}
+                        </textarea>
+                      </div>
+                      {{-- editor --}}
                     </div>
                     <!-- /.box-body -->
 
@@ -250,5 +257,13 @@
             readURL(this);
         });
     });
+</script>
+<script src="{{asset('for_admin_page/bower_components/ckeditor/ckeditor.js')}}"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editer')
+  })
 </script>
 @endsection

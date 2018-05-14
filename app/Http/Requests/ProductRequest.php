@@ -36,7 +36,9 @@ class ProductRequest extends FormRequest
             'glass'=>'required',
             'guarantee'=>'required|numeric',
             'total_qty'=>'required|numeric',
-            'image'=>'mimes:jpeg,bmp,png'
+            'image1'=>'mimes:jpeg,bmp,png',
+            'image2'=>'mimes:jpeg,bmp,png',
+            'image3'=>'mimes:jpeg,bmp,png'
         ];
     }
 }

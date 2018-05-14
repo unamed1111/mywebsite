@@ -5,13 +5,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Edit
-          <small>it all starts here</small>
+          Sửa
+          <small></small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Category</li>
-          <li class="active">Edit</li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+          <li class="active">Danh mục</li>
+          <li class="active">Sửa</li>
         </ol>
       </section>
 
@@ -19,7 +19,7 @@
       <section class="content">
       		<div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Danh mục</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -40,7 +40,7 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer">
-                      <button type="submit" class="btn btn-primary">Edit</button>
+                      <button type="submit" class="btn btn-primary">Sửa</button>
                     </div>
                 </form>
               </div>

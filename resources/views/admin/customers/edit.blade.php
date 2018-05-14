@@ -9,13 +9,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Edit
+          Sửa
           <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Customer</li>
-          <li class="active">Edit</li>
+          <li class="active">Khách hàng</li>
+          <li class="active">Sửa</li>
         </ol>
       </section>
 
@@ -23,7 +23,7 @@
       <section class="content">
       		<div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Customer</h3>
+                <h3 class="box-title">Chỉnh sửa thông tin khách hàng</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -52,7 +52,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('customer_name') ? 'has-error' : "" }}">
-                            <label for="customer_name">Customer Name</label>
+                            <label for="customer_name"> Tên Khách hàng</label>
                             <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Customer Name" value="{{ $customer->customer_name }}">
                             @if($errors->has('customer_name'))
                               <span class="help-block">
@@ -100,7 +100,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('address') ? 'has-error' : "" }}">
-                            <label for="address">Address</label>
+                            <label for="address">Địa chỉ</label>
                             <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{ $customer->address }}"> 
                             @if($errors->has('address'))
                               <span class="help-block">
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('phone') ? 'has-error' : "" }}">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Số điện thoại</label>
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone" value="{{ $customer->phone }}">
                             @if($errors->has('phone'))
                               <span class="help-block">
@@ -124,7 +124,7 @@
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group {{ $errors->has('gender') ? 'has-error' : "" }}">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Giới tính</label>
                             <select class="form-control select2" name="gender" style="width: 100%;">
                               <option value="">Chọn giới tính</option>
                               <option value="1" {{$customer->gender == 1 ? "selected" : "" }}>Nam</option>

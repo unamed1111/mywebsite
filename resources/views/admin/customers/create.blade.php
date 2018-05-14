@@ -9,13 +9,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Create
+          Tạo mới
           <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
           <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Customer</li>
-          <li class="active">Create</li>
+          <li class="active">Khách hàng</li>
+          <li class="active">Tạo mới</li>
         </ol>
       </section>
 
@@ -23,7 +23,7 @@
       <section class="content">
       		<div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Khách hàng</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -34,7 +34,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('customer_name') ? 'has-error' : "" }}">
-                            <label for="customer_name">Customer Name</label>
+                            <label for="customer_name"> Tên Khách hàng</label>
                             <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Customer Name" value="{{ old('customer_name') }}">
                             @if($errors->has('customer_name'))
                               <span class="help-block">
@@ -58,7 +58,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group{{ $errors->has('password') ? 'has-error' : "" }} ">
-                            <label for="password">Password</label>
+                            <label for="password">Mật khẩu</label>
                             <input type="password" name="password" class="form-control" id="password" placeholder="password" value="{{ old('password') }}">
                             @if($errors->has('password'))
                               <span class="help-block">
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group{{ $errors->has('password_confirm') ? 'has-error' : "" }} ">
-                            <label for="password_confirm">Password Comfirm</label>
+                            <label for="password_confirm">Nhập lại mật khẩu</label>
                             <input type="password" name="password_confirm" class="form-control" id="password_confirm" placeholder="Password Confirm" value="{{ old('password_confirm') }}">
                             @if($errors->has('password_confirm'))
                               <span class="help-block">
@@ -82,7 +82,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('address') ? 'has-error' : "" }}">
-                            <label for="address">Address</label>
+                            <label for="address">Địa chỉ</label>
                             <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="{{ old('address') }}"> 
                             @if($errors->has('address'))
                               <span class="help-block">
@@ -93,7 +93,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('phone') ? 'has-error' : "" }}">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Số điện thoại</label>
                             <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone" value="{{ old('phone') }}">
                             @if($errors->has('phone'))
                               <span class="help-block">
@@ -106,7 +106,7 @@
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group {{ $errors->has('gender') ? 'has-error' : "" }}">
-                            <label for="gender">Gender</label>
+                            <label for="gender">Giới tính</label>
                             <select class="form-control select2" name="gender" style="width: 100%;">
                               <option value="">Chọn giới tính</option>
                               <option value="1">Nam</option>

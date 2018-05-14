@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        TradeMark page
-        <small>it all starts here</small>
+        Quản lý thương hiệu
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Trade Mark</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active"> Thương hiệu</li>
       </ol>
     </section>
 
@@ -22,8 +22,8 @@
     <section class="content">
     		<div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">TradeMark</h3>
-              <a class="btn btn-success pull-right" href="{{route('trademarks.create')}}">Add</a>
+              <h3 class="box-title">Thương hiệu</h3>
+              <a class="btn btn-success pull-right" href="{{route('trademarks.create')}}">Thêm</a>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -31,8 +31,8 @@
                 <thead>
                 <tr>
                   <th>#</th>
-                  <th>Name(s)</th>
-                  <th>Action</th>
+                  <th>Tên Thương hiệu</th>
+                  <th>Hành hộng</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
@@ -41,25 +41,15 @@
                   <td>{{ $stt++ }}</td>
                   <td>{{ $trademark->trademark_name}}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-primary" href="{{route('trademarks.show',$trademark->id)}}" ><i class="fa fa-eye"></i> Show</a>
-                    <a class="btn btn-warning" href="{{route('trademarks.edit',$trademark->id)}}"><i class="fa fa-edit"></i> Edit</a>
-                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
+                    <a class="btn btn-primary" href="{{route('trademarks.show',$trademark->id)}}" ><i class="fa fa-eye"></i> Xem</a>
+                    <a class="btn btn-warning" href="{{route('trademarks.edit',$trademark->id)}}"><i class="fa fa-edit"></i> Sửa</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Xoá</a>
                   </td>
                 </tr>
                 @include('admin.elements.modal-delete',['route'=> route('trademarks.destroy',$trademark->id)])
                 @endforeach
               </table>
             </div>
-            <!-- /.box-body -->
-            {{-- <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div> --}}
           </div>
     </section>
     </div>
