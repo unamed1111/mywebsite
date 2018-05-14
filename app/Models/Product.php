@@ -10,7 +10,7 @@ class Product extends Model
 
     public function trademark()
     {
-    	return $this->belongsTo(TradeMark::class,'trade_mark_id','id');
+    	return $this->belongsTo(TradeMark::class,'trade_mark_id', 'id');
     }
 
     public function category()

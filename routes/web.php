@@ -24,12 +24,15 @@ Route::get('/list',function(){
 });
 */
 Route::group(['prefix' => 'frontend'], function () {
-	Route::get('/','FrontentController@index');
-	Route::get('list','FrontentController@list');
-	Route::get('products','FrontentController@products');
-	Route::get('details','FrontentController@details');
-	Route::get('checkout','FrontentController@checkout');
-	Route::get('cart','FrontentController@cart');
+	Route::get('/','FrontentController@index')->name('index');
+	Route::get('products/{id}','FrontentController@products')->name('products');
+	Route::get('details/{id}','FrontentController@details')->name('details');
+	Route::get('cart','FrontentController@cart')->name('cart.index');
+	Route::post('cart','FrontentController@cartstore')->name('cart.store');
+	Route::delete('cart/{id}','FrontentController@cartdelete')->name('cart.delete');
+	Route::get('empty', function(){
+		Cart::destroy();
+	});
 	Route::get('thankyou','FrontentController@thankyou');
 
 });
