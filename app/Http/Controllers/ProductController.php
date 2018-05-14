@@ -53,16 +53,29 @@ class ProductController extends Controller
         $detail = $request->except('_token','product_name','price','category_id','trade_mark_id','description');
         $product = Product::create($input);
         $img = [];
-        if(isset($input['image'])) {
-                foreach($input['image'] as $image)
-                {
-                    $file = $image;
+        if(isset($input['image1'])) {
+                    $file = $input['image1'];
                     $fileName = uniqid('_product') . '.' . $file->getClientOriginalName();
                     $filePath = 'images/product/';
                     $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
                     $fullPath = asset('storage/' . $filePath . $fileName);
                     $img[] = $fullPath;
-                }
+            }
+        if(isset($input['image2'])) {
+                    $file = $input['image2'];
+                    $fileName = uniqid('_product') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/product/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
+            }
+        if(isset($input['image3'])) {
+                    $file = $input['image3'];
+                    $fileName = uniqid('_product') . '.' . $file->getClientOriginalName();
+                    $filePath = 'images/product/';
+                    $fileUpload = $file->move(storage_path('app/public/' . $filePath), $fileName);
+                    $fullPath = asset('storage/' . $filePath . $fileName);
+                    $img[] = $fullPath;
             }
         $detail['image'] = json_encode($img);
         $product->detail()->create($detail);
@@ -75,9 +88,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::with('detail')->find($id);
+        return view('admin.products.show',compact('product'));
     }
 
     /**

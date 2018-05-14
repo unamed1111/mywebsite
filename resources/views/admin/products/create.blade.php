@@ -5,13 +5,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Create
+          Tạo mới
           <small>it all starts here</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Product</li>
-          <li class="active">Create</li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+          <li class="active">Sủa phẩm</li>
+          <li class="active">Tạo mới</li>
         </ol>
       </section>
 
@@ -19,7 +19,7 @@
       <section class="content">
       		<div class="box box-success">
               <div class="box-header with-border">
-                <h3 class="box-title">Categories</h3>
+                <h3 class="box-title">Sản phẩm</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -30,8 +30,8 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('product_name') ? 'has-error' : "" }}">
-                            <label for="product_name">Product</label>
-                            <input type="text" name="product_name" class="form-control" id="product_name" placeholder="Product" value="{{ old('username') }}">
+                            <label for="product_name">Sản phẩm</label>
+                            <input type="text" name="product_name" class="form-control" id="product_name" placeholder="Product" value="{{ old('product_name') }}">
                             @if($errors->has('product_name'))
                               <span class="help-block">
                                 <strong>{{$errors->first('product_name')}}</strong>
@@ -41,8 +41,8 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('price') ? 'has-error' : "" }} ">
-                            <label for="price">Price</label>
-                            <input type="number" name="price" class="form-control" id="price" placeholder="Price" value="{{ old('username') }}">
+                            <label for="price">Giá</label>
+                            <input type="number" name="price" class="form-control" id="price" placeholder="Price" value="{{ old('price') }}">
                             @if($errors->has('price'))
                               <span class="help-block">
                                 <strong>{{$errors->first('price')}}</strong>
@@ -54,7 +54,7 @@
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group{{ $errors->has('category_id') ? 'has-error' : "" }} ">
-                            <label for="category_id">Category</label>
+                            <label for="category_id">Danh mục</label>
                             <select class="form-control select2" name="category_id" style="width: 100%;">
                               @foreach($categories as $category)
                               <option value="{{$category->id}}">{{$category->category_name}}</option>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('trade_mark_id') ? 'has-error' : "" }}">
-                            <label for="trade_mark_id">TradeMark</label>
+                            <label for="trade_mark_id">Thương hiệu</label>
                             <select class="form-control select2" name="trade_mark_id" style="width: 100%;">
                               @foreach($trademarks as $trademark)
                               <option value="{{$trademark->id}}">{{$trademark->trademark_name}}</option>
@@ -87,7 +87,7 @@
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('glass') ? 'has-error' : "" }}">
                             <label for="glass">Mặt kính</label>
-                            <input type="text" name="glass" class="form-control" id="glass" placeholder="Mặt kính" value="{{ old('username') }}"> 
+                            <input type="text" name="glass" class="form-control" id="glass" placeholder="Mặt kính" value="{{ old('glass') }}"> 
                             @if($errors->has('glass'))
                               <span class="help-block">
                                 <strong>{{$errors->first('glass')}}</strong>
@@ -98,7 +98,7 @@
                         <div class="col-md-6">
                           <div class="form-group {{ $errors->has('guarantee') ? 'has-error' : "" }}">
                             <label for="guarantee">Năm bảo hành</label>
-                            <input type="number" name="guarantee" class="form-control" id="guarantee" placeholder="Năm bảo hành" value="{{ old('username') }}">
+                            <input type="number" name="guarantee" class="form-control" id="guarantee" placeholder="Năm bảo hành" value="{{ old('guarantee') }}">
                             @if($errors->has('guarantee'))
                               <span class="help-block">
                                 <strong>{{$errors->first('guarantee')}}</strong>
@@ -201,57 +201,57 @@
                       </div> 
                       {{-- image --}}
                       <div class="row">
-                        <div class="col-md-4 {{ $errors->has('image') ? 'has-error' : "" }}">
-                          <label for="name" class="control-label">{{ __('Ảnh 1') }}</label>
+                        <div class="col-md-4 {{ $errors->has('image1') ? 'has-error' : "" }}">
+                          <label for="image1" class="control-label">{{ __('Ảnh 1') }}</label>
                           <div class="img-preview">
-                              <input type="file" class="image image-upload" name="image[]" value="{{ old('image') }}">
+                              <input type="file" class="image image-upload" name="image1" value="{{ old('image1') }}">
                               <a class="example-image-link" href="" data-lightbox="example-6" data-title="">
                               <img src="" class="img-preview img-fluid", alt="" width="100%" height="100%">
                               </a>
                           </div>
-                           {{-- @if($errors->has('image'))
+                           @if($errors->has('image1'))
                               <span class="help-block">
-                                <strong>{{$errors->first('image')}}</strong>
+                                <strong>{{$errors->first('image1')}}</strong>
                               </span>
-                            @endif --}}
+                            @endif
                         </div>
-                        <div class="col-md-4 {{ $errors->has('image') ? 'has-error' : "" }}">
+                        <div class="col-md-4 {{ $errors->has('image2') ? 'has-error' : "" }}">
                           <label for="name" class="control-label">{{ __('Ảnh 2') }}</label>
                           <div class="img-preview">
-                              <input type="file" class="image image-upload" name="image[]" value="{{ old('image') }}">
+                              <input type="file" class="image image-upload" name="image2" value="{{ old('image2') }}">
                               <a class="example-image-link" href="" data-lightbox="example-6" data-title="">
                               <img src="" class="img-preview img-fluid", alt="" width="100%" height="100%">
                               </a>
                           </div>
-                           {{-- @if($errors->has('image'))
+                           @if($errors->has('image2'))
                               <span class="help-block">
-                                <strong>{{$errors->first('image')}}</strong>
+                                <strong>{{$errors->first('image2')}}</strong>
                               </span>
-                            @endif --}}
+                            @endif
                         </div>
-                        <div class="col-md-4 {{ $errors->has('image') ? 'has-error' : "" }}">
+                        <div class="col-md-4 {{ $errors->has('image3') ? 'has-error' : "" }}">
                           <label for="name" class="control-label">{{ __('Ảnh 3') }}</label>
                           <div class="img-preview">
-                              <input type="file" class="image image-upload" name="image[]">
+                              <input type="file" class="image image-upload" name="image3" value="{{old('image3')}}">
                               <a class="example-image-link" href="" data-lightbox="example-6" data-title="">
                               <img src="" class="img-preview img-fluid", alt="" width="100%" height="100%">
                               </a>
                           </div>
-                           {{-- @if($errors->has('image'))
+                           @if($errors->has('image3'))
                               <span class="help-block">
-                                <strong>{{$errors->first('image')}}</strong>
+                                <strong>{{$errors->first('image3')}}</strong>
                               </span>
-                            @endif --}}
+                            @endif
                         </div>
                       </div>
-                      @if($errors->has('image'))
-                            <div class="div">
-                                <span class="help-block">
-                                  <strong>{{$errors->first('image')}}</strong>
-                                </span>
-                              </div>
-                            @endif
                       {{-- endimage --}}
+                      {{-- editor --}}
+                      <div class="box-body pad form-group">
+                        <label for="content">Content</label>
+                        <textarea id="editer" name="content" rows="10" cols="80">{{old('content')}}
+                        </textarea>
+                      </div>
+                      {{-- editor --}}
                     </div>
                     <!-- /.box-body -->
 
@@ -285,5 +285,13 @@
             readURL(this);
         });
     });
+</script>
+<script src="{{asset('for_admin_page/bower_components/ckeditor/ckeditor.js')}}"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editer')
+  })
 </script>
 @endsection

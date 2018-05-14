@@ -9,12 +9,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        FeedBack
-        <small>it all starts here</small>
+        Phản hồi của khách hàng
+        <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">FeedBack</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+        <li class="active">Phản hồi của </li>
       </ol>
     </section>
 
@@ -22,7 +22,7 @@
     <section class="content">
         <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">FeedBack</h3>
+              <h3 class="box-title">Phản hồi của khách hàng</h3>
               {{-- <a class="btn btn-success pull-right" href="{{route('feedbacks.create')}}">Add</a> --}}
             </div>
             <!-- /.box-header -->
@@ -35,7 +35,7 @@
                   <th>Email</th>
                   <th>Trạng thái</th>
                   <th>Ngày gửi</th>
-                  <th>Action</th>
+                  <th>Hành động</th>
                 </tr>
                 </thead>
                 <?php $stt = 1; ?>
@@ -47,24 +47,14 @@
                   <td>{{ FBstatus[$feedback->status]}}</td>
                   <td>{{ $feedback->created_at}}</td>
                   <td style="width: 25%">
-                    <a class="btn btn-primary" href="{{route('feedbacks.show',$feedback->id)}}"><i class="fa fa-eye"></i> Show</a>
-                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Delete</a>
+                    <a class="btn btn-primary" href="{{route('feedbacks.show',$feedback->id)}}"><i class="fa fa-eye"></i> Xem</a>
+                    <a class="btn btn-danger" data-toggle="modal" data-target="#modal-default"><i class="fa fa-trash"></i> Xoá</a>
                   </td>
                 </tr>
                 @include('admin.elements.modal-delete',['route'=> route('feedbacks.destroy',$feedback->id)])
                 @endforeach
               </table>
             </div>
-            <!-- /.box-body -->
-            {{-- <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">&raquo;</a></li>
-              </ul>
-            </div> --}}
           </div>
     </section>
     </div>

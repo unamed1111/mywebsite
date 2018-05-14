@@ -45,6 +45,11 @@
 			</a>
 		</li>
 		<li>
+			<a href="{{route('orders.index')}}">
+				<i class="fa fa-reorder"></i> <span>Đơn Hàng</span>
+			</a>
+		</li>
+		<li>
 			<a href="{{route('feedbacks.index')}}">
 				<i class="fa fa-comments"></i> <span>Phản hồi của khách hàng</span>
 			</a>
