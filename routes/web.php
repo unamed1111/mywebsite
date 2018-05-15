@@ -31,16 +31,12 @@ Route::group(['prefix' => 'frontend'], function () {
 	Route::get('checkout','FrontentController@checkout');
 	Route::get('cart','FrontentController@cart');
 	Route::get('thankyou','FrontentController@thankyou');
-
 });
 
 
 // Admin by Tudm
 Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
-	Route::get('/',function(){
-		return view('admin.index');
-	});
-
+	Route::get('/','HomeController@dashboard')->name('dashboard');
 	Route::resource('categories','CategoryController');
 	Route::resource('trademarks','TradeMarkController');
 	Route::resource('products','ProductController');
