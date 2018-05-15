@@ -10,6 +10,7 @@
 <script src="js/js_frontend/bootstrap-dropdownhover.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/js_frontend/myscript.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="/css/css_frontend/style.css" rel="stylesheet" type="text/css" />
 <link href="/css/css_frontend/app.css" rel="stylesheet" type="text/css" />
@@ -129,7 +130,7 @@ function showSlides(n) {
       </div>
       <div class="clear"></div>
     </div>
-
+    
     <div class="footer">
         <ul style="color:#FFF;">
               Copyright (c) Sitename.com. All rights reserved. Design by Stylish <a href="http://www.stylishtemplate.com" style="color:#FFF;">Website Templates</a>.

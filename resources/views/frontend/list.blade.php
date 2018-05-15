@@ -11,15 +11,15 @@
     <div class="well well-sm">
         <a class="btn btn-success" href="#">{{$aaa->trademark_name}}</a>
     </div>
-    @foreach($products as $products)
+    @foreach($products as $product)
     <div class="item col-lg-6">
         <div class="thumbnail">
-            <a href="{{route('details',$products->id)}}"><img class="group list-group-image" src="/images/home/gallery2.jpg" alt=""></a>
+            <a href="{{route('details',$product->id)}}"><img class="group list-group-image" src="{{json_decode($product->detail->image)[0]}}" alt=""></a>
             <div class="caption">
-                <a class="bibau1" href="{{route('details',$products->id)}}"><h4 class="group inner list-group-item-heading">{{$aaa->trademark_name}}</h4></a>
-                <a class="bibau2" href="{{route('details',$products->id)}}"><h4 class="group inner list-group-item-heading">{{$products->product_name}}</h4></a>
+                <a class="bibau1" href="{{route('details',$product->id)}}"><h4 class="group inner list-group-item-heading">{{$aaa->trademark_name}}</h4></a>
+                <a class="bibau2" href="{{route('details',$product->id)}}"><h4 class="group inner list-group-item-heading">{{$product->product_name}}</h4></a>
                 <div class="row">
-                    <div class="lead">{{$products->price}}</div>   
+                    <div class="lead">{{$product->price}}</div>   
                 </div>
             </div>
         </div>

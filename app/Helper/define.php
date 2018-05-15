@@ -41,7 +41,9 @@ define('FBstatus',[
 ]);
 
 define('PAYMENT_METHOD',[
-	0 => 'Ship COD',
-	1 => 'Thannh toán bằng VISA'
+	0 => 'Visa',
+	1 => 'MasterCard',
+	2 => 'American Express',
+	3 => 'SHIP COD',
 ]);
 

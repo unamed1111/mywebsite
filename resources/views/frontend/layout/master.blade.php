@@ -10,6 +10,7 @@
 <script src="js/js_frontend/bootstrap-dropdownhover.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="js/js_frontend/myscript.js"></script>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <link href="/css/css_frontend/style.css" rel="stylesheet" type="text/css" />
 <link href="/css/css_frontend/app.css" rel="stylesheet" type="text/css" />
@@ -53,6 +54,26 @@ function showSlides(n) {
 		<div class="headerzone">
 		  	<div class="header">
 		    	<a href="#"><img src="/images/home/logo1.png" height="100"></a>
+		    		<div class="top-right">
+							<ul>
+								@guest
+		                            <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+		                            <li><a href="{{ route('register') }}">{{ __('Register') }}</a></li>
+		                        @else
+		                            <li><a href="#">{{ Auth::user()->name }}</a></li>
+		                            <li><a href="{{ route('logout') }}"
+		                                       onclick="event.preventDefault();
+		                                                     document.getElementById('logout-form').submit();">
+		                                        {{ __('Đăng xuất') }}
+		                                </a>
+
+		                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+		                                        @csrf
+		                                </form>		                              
+		                            </li>
+		                        @endguest
+							</ul>	
+		    		</div>		    	
 		  	</div>
 			<div class="container">
 				<div class="row">
@@ -88,7 +109,7 @@ function showSlides(n) {
 		@yield('banner')
 		@yield('underbanner')
 		@yield('nav')
-
+		
 		<div class="footer">
 			<ul style="color:#FFF;">
       			Copyright (c) Sitename.com. All rights reserved. Design by Stylish <a href="http://www.stylishtemplate.com" style="color:#FFF;">Website Templates</a>.

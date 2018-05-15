@@ -31,7 +31,7 @@
 							<strong>Bảo hành 10 năm Các thương hiệu khác thuộc hệ thống</strong><br>
 							<strong>Đã bao gồm VAT</strong>
 						</h5>
-						<h>Tất cả sản phẩm đều có hóa đơn bán hàng đi kèm. Quý khách nào không nhận được hóa đơn vui lòng liên hệ 123456789 hoặc 987654321
+						<h5>Tất cả sản phẩm đều có hóa đơn bán hàng đi kèm. Quý khách nào không nhận được hóa đơn vui lòng liên hệ 123456789 hoặc 987654321
 						</h5>
 						<div class="action">
 							<form action="{{route('cart.store')}}" method="POST">
@@ -45,29 +45,50 @@
 					</div>
 				</div>
 			</div>
-		<div class="col-xs-12">
-                    <ul class="menu-items">
-                        <li><h4><strong>THÔNG TIN CHI TIẾT</strong></h4></li>
-                    </ul>
-                    <div style="width:100%;border-top:1px solid silver">
-                        <small>
-                            <ul>
-                                <h5><li>Hãng sản xuất: Atlantic</li></h5>
-                                <h5><li>Kiểu dáng: Đồng hồ nam</li></h5>
-                                <h5><li>Chất liệu dây: {{$productdetails->watch_chain}}</li></h5>
-                                <h5><li>Chất liệu mặt: {{$productdetails->case}}</li></h5>
-                                <h5><li>Chất liệu vỏ : {{$productdetails->case}}</li></h5>
-                                <h5><li>Chống nước: {{$productdetails->waterproof}} ATM</li></h5>
-                                <h5><li>Bảo hành: {{$productdetails->guarantee}} năm</li></h5>                             
-                                <h5><li>Năng lượng sử dụng: {{$productdetails->energy}}</li></h5>
-                                <h5><li>Tư vấn và đặt hàng: 098.336.2992</li></h5>
-                                <h5><li>Thanh toán: Trực tiếp khi nhận sản phẩm</li></h5>
-                            </ul>  
-                        </small>
-                    </div>
-                </div>
-                <div class="clear"></div>
+<br>				
+	<div class="thongtin">  
+	  <input id="tab1" type="radio" name="tabs" checked>
+	  <label for="tab1">CHI TIẾT SẢN PHẨM</label>
+	    
+	  <input id="tab2" type="radio" name="tabs">
+	  <label for="tab2">GIỚI THIỆU SẢN PHẨM</label>
 
+	  <input id="tab3" type="radio" name="tabs">
+	  <label for="tab3">GIỚI THIỆU THƯƠNG HIỆU</label>
+
+	  <input id="tab4" type="radio" name="tabs">
+	  <label for="tab4">FEEDBACK</label>
+	    
+	  <section id="content1">
+	    <small>
+            <ul>
+                <h5><li>Hãng sản xuất: Atlantic</li></h5>
+                <h5><li>Kiểu dáng: Đồng hồ nam</li></h5>
+                <h5><li>Chất liệu dây: {{$productdetails->watch_chain}}</li></h5>
+                <h5><li>Chất liệu mặt: {{$productdetails->case}}</li></h5>
+                <h5><li>Chất liệu vỏ : {{$productdetails->case}}</li></h5>
+                <h5><li>Chống nước: {{$productdetails->waterproof}} ATM</li></h5>
+                <h5><li>Bảo hành: {{$productdetails->guarantee}} năm</li></h5>                             
+                <h5><li>Năng lượng sử dụng: {{$productdetails->energy}}</li></h5>
+                <h5><li>Tư vấn và đặt hàng: 098.336.2992</li></h5>
+                <h5><li>Thanh toán: Trực tiếp khi nhận sản phẩm</li></h5>
+            </ul>  
+        </small>
+  	</section>
+    
+  	<section id="content2">
+    	<p>
+      		<strong>{{$products->description}}</strong>
+    	</p>
+  	</section>
+    
+  	<section id="content3">
+    	<p>
+      		<strong>{{$products->trademark->description}}</strong>
+    	</p>
+  	</section>
+    
 	</div>
+</div>
 </div>
 @endsection

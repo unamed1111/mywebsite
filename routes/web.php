@@ -30,6 +30,8 @@ Route::group(['prefix' => 'frontend'], function () {
 	Route::get('cart','FrontentController@cart')->name('cart.index');
 	Route::post('cart','FrontentController@cartstore')->name('cart.store');
 	Route::delete('cart/{id}','FrontentController@cartdelete')->name('cart.delete');
+	Route::patch('cart/{id}','FrontentController@cartundate')->name('cart.update');
+	Route::post('checkout', 'FrontentController@checkout')->name('checkout');
 	Route::get('empty', function(){
 		Cart::destroy();
 	});
