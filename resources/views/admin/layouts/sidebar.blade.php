@@ -25,7 +25,7 @@
 	  <!-- sidebar menu: : style can be found in sidebar.less -->
 	  <ul class="sidebar-menu" data-widget="tree">
 		<li class="treeview">
-		  <a href="#">
+		  <a href="/admin/">
 			<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 		  </a>
 		</li>
