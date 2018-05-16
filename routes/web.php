@@ -44,12 +44,8 @@ Route::group(['prefix' => 'admin','middleware'=>'auth'], function () {
 	Route::resource('admins','AdminController');
 	Route::resource('feedbacks','FeedBackController');
 	Route::resource('orders','OrderController');
-
+	Route::resource('events','EventController');
+	Route::resource('supports','SupportController');
 });
-
-Route::get('/login', 'HomeController@index')->name('login');
-Route::get('/logout','Auth\LoginController@logout')->name('logout');
-
-Auth::routes();
-
+	Auth::routes();
 

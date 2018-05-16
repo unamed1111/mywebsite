@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        return view('home');
+        return view('admin/');
     }
     /**
      * Show the application dashboard.
@@ -42,8 +42,8 @@ class HomeController extends Controller
     public function dashboard()
     {
         // $order = Order::select( DB::raw( 'sum("billing_total") as total' ))->groupBy(function($date) {
-        // return Carbon::parse($date->created_at)->format('m');
-        // });
+        //     return Carbon::parse($date->created_at)->format('m');
+        //     });
         // dd($order);
         $chart = new SellingTotalChart;
         $chart->labels(['Tháng 1', 'Tháng 2', 'Tháng 3','Tháng 4','Tháng 5', 'Tháng 6', 'Tháng 7','Tháng 8','Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12']);
