@@ -41,7 +41,7 @@
                 @foreach($products as $product)
                 <tr>
                   <td>{{ $stt++ }}</td>
-                  <td>{{ $product->product_name}}</td>
+                  <td><a class="bibau2" href="{{route('details',$product->id)}}"><h4 class="group inner list-group-item-heading">{{$product->trademark->trademark_name}}</h4></a></td>
                   <td>{{ $product->price}}</td>
                   <td>{{ $product->detail ? $product->detail->total_qty : ""}}</td>
                   <td style="width: 25%">

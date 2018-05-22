@@ -27,18 +27,26 @@
 							<td data-th="Product">
 								<div class="row">
 									<div class="col-sm-2 hidden-xs">
-										<a href="{{route('details',$item->id)}}"><img src="/images/home/gallery3.jpg" >
+										<a href="{{route('details',$item->id)}}"><img src="{{json_decode($item->options->img)[0]}}" >
 										</a>
 									</div>
 									<div class="col-sm-10">
 										<a href="{{route('details',$item->id)}}"><h4 style="color:black;"><strong>{{$item->name}}</strong></h4></a>
+                                        {{$item->img}}
 									</div>
 								</div>
 							</td>
-							<td data-th="Price">{{$item->price}}</td>
+							<td data-th="Price">{{$item->price}}</td> 
+                            <form action="{{route('cart.update')}}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('POST') }}                       
 							<td data-th="Quantity">								
-								<input id="qty" type="number" class="form-control text-center" value="{{$item->qty}}"></td>
-							<td><button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button></td>
+								<input id="qty" name="qty" type="number" class="form-control text-center" value="{{$item->qty}}">
+                                <input id="rowId" name="rowId" type="hidden" class="form-control text-center" value="{{$item->rowId}}">
+                            </td>
+							<td>
+                                <button class="btn btn-info btn-sm" type="submit"><i class="fa fa-refresh"></i></button></td>
+                            </form>
 							<td data-th="Subtotal" class="text-center">{{$item->price*$item->qty}}</td>
 							<td class="actions" data-th="">
 								<form action="{{route('cart.delete',$item->rowId)}}" method="POST">
@@ -61,7 +69,7 @@
 							<td></td>
 							<td class="hidden-xs text-center">
 										Tổng: {{Cart::subtotal()}}<br>
-										VAT (10%): {{Cart::tax()}}%<br>
+										VAT (10%): {{Cart::tax()}}<br>
 								<h4 class="price"><span>Tổng cộng: {{Cart::total()}}</span></h4>
 							</td>							
 						</tr>

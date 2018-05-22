@@ -8,6 +8,7 @@ use App\Models\TradeMark;
 use App\Models\TradeMarkCategory;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\ProductDetail;
 use App\Models\Order;
 use App\Models\OrderProduct;
 use Session;
@@ -21,36 +22,80 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
-
+        $product    = Product::inRandomOrder()->take(8)->get();
         return view('frontend.trangchu')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'product'    => $product,
+        ]);
+    }
+    public function register()
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        return view('frontend.register')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
         ]);
     }
-    public function products($id)
+    public function login()
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
-        $products = TradeMark::find($id)->product;
-        $aaa = TradeMark::find($id);
+        return view('frontend.login')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+        ]);
+    }
+    public function products($id_category, $id_trademark)
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->with('trademark')->get();
         return view('frontend.list')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
             'products'   => $products,
-            'aaa'        => $aaa,
         ]);
+    }
+    public function search(Request $request)
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+
+        $request->validate([
+            'query' => 'required|min:3',
+        ]);
+
+        $query = $request->input('query');
+        $products = Product::where('product_name', 'like', "%$query%")
+                            ->orWhere('price', 'like', "%$query%")
+                            ->orWhere('description', 'like', "%$query%")->get();
+        return view('frontend.search-results')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'products'   => $products,
+        ]);;
     }
     public function details($id)
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
         $products   = Product::find($id);
-        $productdetails = Product::find($id)->detail;
+        if ($products->detail->total_qty>=10) {
+            $tinhtrang = 'còn hàng';
+        }
+        elseif ($products->detail->total_qty>0 && $products->detail->total_qty<10) {
+            $tinhtrang = 'sắp hết hàng';
+        }
+        else {
+            $tinhtrang = 'hết hàng';
+        }
         return view('frontend.details')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
-            'products'        => $products,
-            'productdetails'  => $productdetails,
+            'products'   => $products,
+            'tinhtrang'  => $tinhtrang,
         ]);
     }
     public function cart()
@@ -64,30 +109,32 @@ class FrontentController extends Controller
     }
     public function cartstore(Request $request)
     {
-        Cart::add($request->id, $request->product_name, 1, $request->price)
-            ->associate('App\Models\Product');
+        $qty = $request->qty;
+        if ($qty>0) {
+            Cart::add([
+            'id'      => $request->id, 
+            'name'    => $request->product_name,
+            'qty'     => 1,
+            'price'   => $request->price,
+            'options' => ['img' => $request->img]
+        ])->associate('App\Models\Product');
         session()->flash('notif', 'ĐÃ ĐƯỢC THÊM VÀO GIỎ HÀNG');
         return redirect()->route('cart.index');
+        }
+        session()->flash('notif', 'ĐÃ ĐƯỢC THÊM VÀO GIỎ HÀNG');
+        return back()->with('notif', 'SẢN PHẨM ĐÃ HẾT HÀNG');
     }
     public function cartdelete($id)
     {
         Cart::remove($id);
         return back()->with('notif', 'ĐÃ XÓA SẢN PHẨM');
     }
-    public function cartupdate(Request $request, $id)
-    {
-        $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric|between:1,5'
-        ]);
-
-        if ($validator->fails()) {
-            session()->flash('errors', collect(['Quantity must be between 1 and 5.']));
-            return response()->json(['success' => false], 400);
-        }
-
-        Cart::update($id, $request->quantity);
-        session()->flash('success_message', 'Quantity was updated successfully!');
-        return response()->json(['success' => true]);
+    public function cartupdate(Request $request)
+    {   
+        $rowId = $request->rowId;
+        $qty = $request->qty;
+        Cart::update($rowId,$qty);
+        return back()->with('notif', 'ĐÃ CẬP NHẬT');
     }
     public function checkout(Request $request)
     {   
@@ -112,7 +159,25 @@ class FrontentController extends Controller
             $oderproduct->qty = $item->qty;
             $oderproduct->discount = 0; 
             $oderproduct->save();
+
+            $productdetails = ProductDetail::find($item->id);
+            $productdetails->total_qty = $productdetails->total_qty - $item->qty;
+            $productdetails->save();
+
+
+            Cart::remove($item->rowId);
         }
-        return redirect()->route('cart.index')->with('notif', 'ĐẶT HÀNG THÀNH CÔNG');
+        
+
+        return redirect()->route('thankyou');
+    }
+    public function thankyou()
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        return view ('frontend.thankyou')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+        ]);
     }
 }

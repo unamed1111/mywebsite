@@ -25,17 +25,22 @@ Route::get('/list',function(){
 */
 Route::group(['prefix' => 'frontend'], function () {
 	Route::get('/','FrontentController@index')->name('index');
-	Route::get('products/{id}','FrontentController@products')->name('products');
+	Route::get('register','FrontentController@register')->name('cus.register');
+	Route::get('login','FrontentController@login')->name('cus.login');
+	
+	Route::get('products/{id_category}/{id_trademark}','FrontentController@products')->name('products');
+
+	Route::get('search','FrontentController@search')->name('search');
+
 	Route::get('details/{id}','FrontentController@details')->name('details');
+
 	Route::get('cart','FrontentController@cart')->name('cart.index');
-	Route::post('cart','FrontentController@cartstore')->name('cart.store');
+	Route::post('cart/store','FrontentController@cartstore')->name('cart.store');
 	Route::delete('cart/{id}','FrontentController@cartdelete')->name('cart.delete');
-	Route::patch('cart/{id}','FrontentController@cartundate')->name('cart.update');
+	Route::post('cart/update','FrontentController@cartupdate')->name('cart.update');
+
 	Route::post('checkout', 'FrontentController@checkout')->name('checkout');
-	Route::get('empty', function(){
-		Cart::destroy();
-	});
-	Route::get('thankyou','FrontentController@thankyou');
+	Route::get('thankyou','FrontentController@thankyou')->name('thankyou');
 });
 
 

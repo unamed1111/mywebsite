@@ -5,32 +5,47 @@
 			<div class="container-fliud">
 				<div class="wrapper row">
 					<div class="preview col-md-6">
-						
-						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="/images/home/gallery2.jpg" /></div>
-						  <div class="tab-pane" id="pic-2"><img src="/images/home/gallery2.jpg" /></div>
-						  <div class="tab-pane" id="pic-3"><img src="/images/home/gallery2.jpg" /></div>
-						  <div class="tab-pane" id="pic-4"><img src="/images/home/gallery2.jpg" /></div>
-						  <div class="tab-pane" id="pic-5"><img src="/images/home/gallery2.jpg" /></div>
-						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="/images/home/gallery2.jpg" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="/images/home/gallery2.jpg" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="/images/home/gallery2.jpg" /></a></li>
-						  <li><a data-target="#pic-4" data-toggle="tab"><img src="/images/home/gallery2.jpg" /></a></li>
-						  <li><a data-target="#pic-5" data-toggle="tab"><img src="/images/home/gallery2.jpg" /></a></li>
-						</ul>
-						
+						@if(session()->has('notif'))									
+					<div class="alert alert-danger">
+						<strong>{{session()->get('notif')}}</strong>
+					</div>						
+				@endif
+						<div id="myCarousel" class="carousel slide" data-ride="carousel">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner">
+                                        @foreach(json_decode($products->detail->image) as $key => $image)
+                                      <div class="item {{ $key == 0 ? "active" : "" }}">
+                                        <img src="{{$image}}"  width="100%">
+                                      </div>
+                                        @endforeach
+                                    </div>
+
+                                    <!-- Left and right controls -->
+                                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                                      <span class="glyphicon glyphicon-chevron-left"></span>
+                                      <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                                      <span class="glyphicon glyphicon-chevron-right"></span>
+                                      <span class="sr-only">Next</span>
+                                    </a>
+                                  </div>						
 					</div>
 					<div class="details col-md-6">
 						<h3 class="product-title">{{$products->product_name}}</h3>
 						<h4 class="price">loại đồng hồ: {{$products->category->category_name}}</h4>
 						<h4 class="price">thương hiệu: {{$products->trademark->trademark_name}}</h4>
-						<h4 class="price">current price: <span>{{$products->price}}</span></h4>
-						<h5><strong>Bảo hành trọn đời đối với thương hiệu</strong><br>
-							<strong>Bảo hành 10 năm Các thương hiệu khác thuộc hệ thống</strong><br>
-							<strong>Đã bao gồm VAT</strong>
+						<h4 class="price">Giá: <span>{!! number_format($products->price,2) !!}</span></h4>
+						<h4 class="price">tình trạng: <span>{{$tinhtrang}}</span></h4>
 						</h5>
+						<h5>Mô tả : {{$products->description}}</h5>
 						<h5>Tất cả sản phẩm đều có hóa đơn bán hàng đi kèm. Quý khách nào không nhận được hóa đơn vui lòng liên hệ 123456789 hoặc 987654321
 						</h5>
 						<div class="action">
@@ -39,6 +54,8 @@
 								<input type="hidden" name="id" value="{{$products->id}}">
 								<input type="hidden" name="product_name" value="{{$products->product_name}}">
 								<input type="hidden" name="price" value="{{$products->price}}">
+								<input type="hidden" name="img" value="{{$products->detail->image}}">
+								<input type="hidden" name="qty" value="{{$products->detail->total_qty}}">
 								<button class="add-to-cart btn btn-default" type="submit">thêm vào giỏ</button>
 							</form>
 						</div>
@@ -62,14 +79,14 @@
 	  <section id="content1">
 	    <small>
             <ul>
-                <h5><li>Hãng sản xuất: Atlantic</li></h5>
-                <h5><li>Kiểu dáng: Đồng hồ nam</li></h5>
-                <h5><li>Chất liệu dây: {{$productdetails->watch_chain}}</li></h5>
-                <h5><li>Chất liệu mặt: {{$productdetails->case}}</li></h5>
-                <h5><li>Chất liệu vỏ : {{$productdetails->case}}</li></h5>
-                <h5><li>Chống nước: {{$productdetails->waterproof}} ATM</li></h5>
-                <h5><li>Bảo hành: {{$productdetails->guarantee}} năm</li></h5>                             
-                <h5><li>Năng lượng sử dụng: {{$productdetails->energy}}</li></h5>
+                <h5><li>Hãng sản xuất:<i style="color: orange; font-weight: bold;"> {{$products->trademark->trademark_name}}</i></li></h5>
+                <h5><li>Kiểu dáng:<i style="color: orange; font-weight: bold;"> Đồng hồ nam</i></li></h5>
+                <h5><li>Chất liệu dây:<i style="color: orange; font-weight: bold;"> {{ WATCH_CHAIN[$products->detail->watch_chain]}}</i></li></h5>
+                <h5><li>Chất liệu mặt:<i style="color: orange; font-weight: bold;"> {{$products->detail->glass}}</i></li></h5>
+                <h5><li>Chất liệu vỏ :<i style="color: orange; font-weight: bold;"> {{ WATCH_CASE[$products->detail->case]}}</i></li></h5>
+                <h5><li>Chống nước:<i style="color: orange; font-weight: bold;"> {{$products->detail->waterproof}}</i> ATM</li></h5>
+                <h5><li>Bảo hành:<i style="color: orange; font-weight: bold;"> {{$products->detail->guarantee}}</i> năm</li></h5>                             
+                <h5><li>Năng lượng sử dụng:<i style="color: orange; font-weight: bold;"> {{ WATCH_ENERGY[$products->detail->energy]}}</i></li></h5>
                 <h5><li>Tư vấn và đặt hàng: 098.336.2992</li></h5>
                 <h5><li>Thanh toán: Trực tiếp khi nhận sản phẩm</li></h5>
             </ul>  
@@ -77,16 +94,15 @@
   	</section>
     
   	<section id="content2">
-    	<p>
-      		<strong>{{$products->description}}</strong>
-    	</p>
+    	{!! $products->detail->content !!}
   	</section>
     
   	<section id="content3">
     	<p>
-      		<strong>{{$products->trademark->description}}</strong>
+      		<strong>{{$products->trademark->description}}</strong> 
     	</p>
   	</section>
+
     
 	</div>
 </div>

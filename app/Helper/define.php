@@ -45,5 +45,6 @@ define('PAYMENT_METHOD',[
 	1 => 'MasterCard',
 	2 => 'American Express',
 	3 => 'SHIP COD',
+	4 => 'Trực tiếp'
 ]);
 
