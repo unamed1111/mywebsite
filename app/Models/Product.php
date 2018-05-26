@@ -27,4 +27,19 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+
+    public function scopeSearchCategory($query,$category_id)
+    {
+        return $query->where('category_id',$category_id);
+    }
+
+     public function scopeSearchTrademark($query,$trademark_id)
+    {
+        return $query->where('trade_mark_id',$trademark_id);
+    }
+
+    public function scopeSearchPrice($query,$price)
+    {
+        return $query->whereBetween('price', PRICE[$price]);
+    }
 }

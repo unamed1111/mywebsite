@@ -42,6 +42,24 @@ define('FBstatus',[
 
 define('PAYMENT_METHOD',[
 	0 => 'Ship COD',
-	1 => 'Thannh toán bằng VISA'
+	1 => 'Thannh toán bằng VISA',
+	2 => 'Thannh toán bằng Card',
+	3 => 'Thannh toán bằng Master Card'
+]);
+
+define('ARRAY_PRICE',[
+	0 => 'Chọn Tầm giá',
+	1 => 'Giá dưới 5tr',
+	2 => 'Giá từ 5tr - 10tr',
+	3 => 'Giá từ 10tr - 20tr',
+	4 => 'Giá từ 20tr - 50tr',
+	5 => 'Giá trên 50'
+]);
+define('PRICE',[
+	1 => [0,5000000],
+	2 => [5000000,10000000],
+	3 => [10000000,20000000],
+	4 => [20000000,5000000],
+	5 => [5000000,500000000]
 ]);
 

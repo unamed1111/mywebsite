@@ -22,10 +22,36 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
    
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all();
-        return view('admin.products.index',compact('products'));
+        $stt = 0;
+        if($request->has('search_category') && $request->get('search_category') != 0){
+            $products = Product::searchCategory($request->get('search_category'));
+            $stt = 1;
+        }
+        if($request->has('search_trademark') && $request->get('search_trademark') != 0){
+            if($stt == 1){
+                $products = $products->searchTrademark($request->get('search_trademark'));
+            }else{
+                $products = Product::searchTrademark($request->get('search_trademark'));
+                $stt = 1;
+            }
+        }
+        if($request->has('search_price') && $request->get('search_price') != 0){
+             if($stt == 1){
+                $products = $products->searchPrice($request->get('search_price'));
+            }else{
+                $products = Product::searchPrice($request->get('search_price'));
+                $stt = 1;
+            }
+        }
+        if($stt == 1){
+            $products = $products->get();
+        }
+        $categories = Category::all();
+        $trademarks = TradeMark::all();
+        return view('admin.products.index',compact('products','categories','trademarks'));
     }
 
     /**
@@ -147,10 +173,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::find($id);
-        DB::transaction(function () {
             $product->detail->delete();
             $product->delete();
-        });
        
         return redirect()->route('products.index');
     }

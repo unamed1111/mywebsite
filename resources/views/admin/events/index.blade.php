@@ -32,6 +32,7 @@
                 <tr>
                   <th>#</th>
                   <th>Tên</th>
+                  <th>Thời gian</th>
                   <th>Hành động</th>
                 </tr>
                 </thead>
@@ -40,6 +41,7 @@
                 <tr>
                   <td>{{ $stt++ }}</td>
                   <td>{{ $event->title}}</td>
+                  <td style = "width : 20%">{{$event->start_date. " đến ". $event->end_date }}</td>
                   <td style="width: 25%">
                     <a class="btn btn-primary" href="{{route('events.show',$event->id)}}"><i class="fa fa-eye"></i> Xem</a>
                     <a class="btn btn-warning" href="{{route('events.edit',$event->id)}}"><i class="fa fa-edit"></i> Sửa</a>
