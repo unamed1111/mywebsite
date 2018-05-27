@@ -32,7 +32,7 @@ class HomeController extends Controller
     public function index()
     {
         
-        return view('home');
+        return view('admin/');
     }
     /**
      * Show the application dashboard.
@@ -41,13 +41,17 @@ class HomeController extends Controller
      */
     public function dashboard()
     {
-        // $order = Order::select( DB::raw( 'sum("billing_total") as total' ))->groupBy(function($date) {
-        // return Carbon::parse($date->created_at)->format('m');
-        // });
-        // dd($order);
+        $array = [];
+        $i = 1;
+        while ($i <= 12) {
+            $orders = Order::whereRaw('EXTRACT(MONTH FROM created_at) ='. $i)->sum('billing_total');
+            $array = array_add($array, $i-1, $orders);
+            $i++;
+        }
+            
         $chart = new SellingTotalChart;
         $chart->labels(['Tháng 1', 'Tháng 2', 'Tháng 3','Tháng 4','Tháng 5', 'Tháng 6', 'Tháng 7','Tháng 8','Tháng 9', 'Tháng 10', 'Tháng 11','Tháng 12']);
-        $chart->dataset('Triệu đồng ','line', [100,65,44,70,100,65,44,70,100,65,44,70])->color('#00c0ef')->backgroundColor('#f39c12')->lineTension(0.4);
+        $chart->dataset('Triệu đồng ','line', $array)->color('#00c0ef')->backgroundColor('#f39c12')->lineTension(0.4);
         $chart->height(200);
         $chart->title('Doanh thu trong năm');
         // $chart = Charts::database(Order::all()->sum('billing_total'),'line','chartjs')->grouByMonth();

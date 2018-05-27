@@ -18,11 +18,43 @@
       </ol>
     </section>
 
+    <hr>
     <!-- Main content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 form-group">
+            <label for="search_category" class="col-2" style="float: left;">Danh mục</label>
+            <select id="search_category" class="form-control">
+                    <option value="0">Chọn Danh mục</option>
+                    @foreach($categories as $category)
+                    <option value = "{{$category->id}}" {{ request()->query('search_category') == $category->id ? "selected" : "" }}>{{$category->category_name}}</option>
+                    @endforeach
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="search_trademark" class="col-2" style="float: left;">Thương hiệu</label>
+            <select id="search_trademark" class="form-control">
+                    <option value="0">Chọn Thương hiệu</option>
+                    @foreach($trademarks as $trademark)
+                    <option value = "{{$trademark->id}}" {{ request()->query('search_trademark') == $trademark->id ? "selected" : "" }}>{{$trademark->trademark_name}}</option>
+                    @endforeach
+            </select>
+          </div>
+          <div class="col-md-3 form-group">
+            <label for="search_price" class="col-2" style="float: left;">Price</label>
+            <select id="search_price" class="form-control">
+                    @foreach(ARRAY_PRICE as $key => $value)
+                    <option value="{{$key}}" {{ request()->query('search_price') == $key ? "selected" : "" }}>{{$value}}</option>
+                    @endforeach
+            </select>
+          </div>
+      </div>
+    </div>
     <section class="content">
     		<div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Sản phẩm</h3>
+               
               <a class="btn btn-success pull-right" href="{{route('products.create')}}">Thêm</a>
             </div>
             <!-- /.box-header -->
@@ -78,4 +110,16 @@
     $('#example1').DataTable()
   })
 </script>
+<script>
+        $(function(){
+            $("#search_category,#search_trademark,#search_price").on('change', function(){
+                  var url = "{!! http_build_query(Request::except('search_category','search_trademark')) !!}";
+                if (url.length > 0) {
+                    location.href = window.location.pathname + "?" + url + "&search_category=" +$('#search_category').val() +"&search_trademark=" +$('#search_trademark').val() +"&search_price=" +$('#search_price').val();
+                } else {
+                    location.href = window.location.pathname + "?search_category=" +$('#search_category').val() +"&search_trademark=" +$('#search_trademark').val() +"&search_price=" +$('#search_price').val();
+                }
+            });
+        });
+    </script>
 @endsection

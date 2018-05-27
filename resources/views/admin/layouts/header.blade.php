@@ -138,7 +138,10 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div> --}}
                 <div class="pull-right">
-                  <a href="{{route('logout')}}" class="btn btn-default btn-flat">Đăng xuất</a>
+                  <form action=" {{ route('logout') }}" method="POST" >
+                    @csrf
+                  <button class="btn btn-default btn-flat" type="submit">Đăng xuất</button>
+                  </form>
                 </div>
               </li>
             </ul>

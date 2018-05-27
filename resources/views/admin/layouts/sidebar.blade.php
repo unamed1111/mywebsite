@@ -25,13 +25,13 @@
 	  <!-- sidebar menu: : style can be found in sidebar.less -->
 	  <ul class="sidebar-menu" data-widget="tree">
 		<li class="treeview">
-		  <a href="/admin/">
+		  <a href="/admin">
 			<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 		  </a>
 		</li>
 		<li>
 			<a href="{{route('categories.index')}}">
-				<i class="fa fa-files-o"></i> <span>Danh mục</span>
+				<i class="fa fa-files-o"></i><span>Danh mục</span>
 			</a>
 		</li>
 		<li>
@@ -62,6 +62,16 @@
 		<li>
 			<a href="{{route('admins.index')}}">
 				<i class="fa fa-user-secret"></i> <span>Admin</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('supports.index')}}">
+				<i class="fa fa-support"></i> <span>Thông tin hỗ trợ khách hàng</span>
+			</a>
+		</li>
+		<li>
+			<a href="{{route('events.index')}}">
+				<i class="fa fa-calendar"></i> <span>Sự kiện</span>
 			</a>
 		</li>
 		{{-- <li class="treeview">
