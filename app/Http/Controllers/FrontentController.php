@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Order;
 use App\Models\OrderProduct;
+use Illuminate\Support\collection;
 use Session;
 class FrontentController extends Controller
 {
@@ -47,16 +48,70 @@ class FrontentController extends Controller
             'categories' => $categories,
         ]);
     }
-    public function products($id_category, $id_trademark)
+    public function products($id_category, $id_trademark, $value, $price, $energy)
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
-        $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->with('trademark')->get();
+        if ($value==1) {
+            if($energy==2){
+                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->orderBy('price', 'DESC')->get();
+            }
+            else{
+                $detail = ProductDetail::where('energy',$energy)->pluck('product_id')->toArray();
+                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->whereIn('id',$detail)->orderBy('price', 'DESC')->get();
+            }         
+            return view('frontend.products')->with([
+                    'trademarks' => $trademarks,
+                    'categories' => $categories,
+                    'products'   => $products,
+                    'id_category'=> $id_category,
+                    'id_trademark'=>$id_trademark,
+                    'value'      => $value,
+                    'energy'     => $energy,
+            ]);
+        }
+        else{
+
+            if($energy==2){
+                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->orderBy('price', 'ASC')->get();
+            }
+            else{
+                $detail = ProductDetail::where('energy',$energy)->pluck('product_id')->toArray();
+                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->whereIn('id',$detail)->orderBy('price', 'ASC')->get();
+            }
+            return view('frontend.products')->with([
+                    'trademarks' => $trademarks,
+                    'categories' => $categories,
+                    'products'   => $products,
+                    'id_category'=> $id_category,
+                    'id_trademark'=>$id_trademark,
+                    'value'      => $value,
+                    'energy'     => $energy,
+            ]);
+        }
+    }
+    public function list($id, $value)
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        if ($value==2) {
+            $products = Product::where('trade_mark_id',$id)->orderBy('price', 'ASC')->get();
+            return view('frontend.list')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'products'   => $products,
+            'id'         => $id,
+        ]);
+        }
+        else{
+        $products = Product::where('trade_mark_id',$id)->orderBy('price', 'DESC')->get();
         return view('frontend.list')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
             'products'   => $products,
+            'id'         => $id,
         ]);
+        }
     }
     public function search(Request $request)
     {
@@ -76,6 +131,10 @@ class FrontentController extends Controller
             'categories' => $categories,
             'products'   => $products,
         ]);;
+    }
+    public function sortby()
+    {
+
     }
     public function details($id)
     {
@@ -159,10 +218,6 @@ class FrontentController extends Controller
             $oderproduct->qty = $item->qty;
             $oderproduct->discount = 0; 
             $oderproduct->save();
-
-            $productdetails = ProductDetail::find($item->id);
-            $productdetails->total_qty = $productdetails->total_qty - $item->qty;
-            $productdetails->save();
 
 
             Cart::remove($item->rowId);

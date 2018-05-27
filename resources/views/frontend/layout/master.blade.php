@@ -107,7 +107,7 @@ function showSlides(n) {
 			          		</a>
 			          		<ul class="dropdown-menu" role="menu">
 			          		@foreach($trademarks as $trademark)
-			            		<li><a href="#">{{$trademark->trademark_name}}</a></li>
+			            		<li><a href="{{ route('list',[$trademark->id,1]) }}">{{$trademark->trademark_name}}</a></li>
 			          		@endforeach
 			          		</ul>
 			        	</li>
@@ -118,7 +118,7 @@ function showSlides(n) {
 			          			</a>
 			          			<ul class="dropdown-menu" role="menu">
 			          			@foreach($category->trademark as $trademark)
-			            			<li><a href="/frontend/products/{{$category->id}}/{{$trademark->id}}">{{$trademark->trademark_name}}</a></li>
+			            			<li><a href="/frontend/products/{{$category->id}}/{{$trademark->id}}/{{$value=1}}/{{$energy=2}}">{{$trademark->trademark_name}}</a></li>
 			          			@endforeach
 			          			</ul>
 			        		</li> 
@@ -144,7 +144,7 @@ function showSlides(n) {
 				<div class="col-sm-4">
 				  <h2>About Us</h2><p>
 		                           <div class="myframegmap"> 
-		                           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448183.73912804417!2d76.81306640115254!3d28.646677246352574!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1513154329228" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+		                           	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14900.82102572999!2d105.78793714999999!3d20.9844078!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33f9723553ecff7d!2zQ28ub3BtYXJ0IEjDoCDEkMO0bmc!5e0!3m2!1svi!2s!4v1527061634905" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 		                    </div></p><br>
 				</div>
 				<div class="col-sm-3">

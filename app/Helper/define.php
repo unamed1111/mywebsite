@@ -30,7 +30,7 @@ define('LEVEL',[
 	'0' => 'Admin',
 	'1' => 'Người quản lý',
 	'2' => 'Nhân Viên',
-	'3'=>'Quản kho'
+	'3' =>'Quản kho',
 ]);
 
 define('FEEDBACK_UNSEEN',0);

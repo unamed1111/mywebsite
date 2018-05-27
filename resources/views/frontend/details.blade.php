@@ -94,7 +94,7 @@
   	</section>
     
   	<section id="content2">
-    	{!! $products->detail->content !!}
+    	{{$products->description}}
   	</section>
     
   	<section id="content3">

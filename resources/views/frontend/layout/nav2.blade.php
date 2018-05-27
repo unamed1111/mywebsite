@@ -148,18 +148,18 @@ function showSlides(n) {
 
               <div class="box2">
                 <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>Khoảng giá</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=2}}/{{$energy}}" class="boldText" style="color: black;">Dưới 100 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=3}}/{{$energy}}" class="boldText" style="color: black;">Từ 100 - 300 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=4}}/{{$energy}}" class="boldText" style="color: black;">Từ 300 - 500 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=5}}/{{$energy}}" class="boldText" style="color: black;">Từ 500 triệu</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dưới 100 triệu</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 100 - 300 triệu</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 300 - 500 triệu</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 500 triệu</a></div>
                 <div class="clear"></div>
               </div>
 
 
               <div class="box2">
                 <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>năng lượng</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value}}/{{$price}}/{{$energy=0}}" class="boldText" style="color: black;">Đồng hồ cơ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value}}/{{$price}}/{{$energy=1}}" class="boldText" style="color: black;">Đồng hồ điện tử</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Đồng hồ cơ</a></div>
+                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Đồng hồ điện tử</a></div>
                 <div class="clear"></div>
               </div>
 

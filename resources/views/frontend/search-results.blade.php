@@ -14,18 +14,18 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Ảnh</th>
-                  <th>Tên sản phẩm</th>
-                  <th>Thương hiệu</th>
-                  <th>Giá</th>
+                  <th style="text-align: center;">Ảnh</th>
+                  <th style="text-align: center;">Tên sản phẩm</th>
+                  <th style="text-align: center;">Thương hiệu</th>
+                  <th style="text-align: center;">Giá</th>
                 </tr>
                 </thead>
                 @foreach($products as $product)
                 <tr>
-                  <td><a href="{{ route('details',$product->id)}}"><img src="{{json_decode($product->detail->image)[0]}}" style="width: 100px; height: 100px;" ></a></td>
-                  <td><a class="bibau1" href="{{ route('details',$product->id)}}"><h4 class="group inner list-group-item-heading">{{$product->product_name}}</h4></a></td>
-                  <td><p class="bibau2"><h4 class="group inner list-group-item-heading">{{$product->trademark->trademark_name}}</h4></p></td>
-                  <td><div class="lead">{{$product->price}}</div></td>
+                  <td style="text-align: center;"><a href="{{ route('details',$product->id)}}"><img src="{{json_decode($product->detail->image)[0]}}" style="width: 100px; height: 100px;" ></a></td>
+                  <td style="text-align: center;"><a class="bibau1" href="{{ route('details',$product->id)}}"><h4 class="group inner list-group-item-heading">{{$product->product_name}}</h4></a></td>
+                  <td style="text-align: center;"><p class="bibau2"><h4 class="group inner list-group-item-heading">{{$product->trademark->trademark_name}}</h4></p></td>
+                  <td style="text-align: center;"><div class="lead">{{$product->price}}</div></td>
                 </tr>
                 @endforeach
               </table>
