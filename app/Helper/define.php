@@ -30,7 +30,7 @@ define('LEVEL',[
 	'0' => 'Admin',
 	'1' => 'Người quản lý',
 	'2' => 'Nhân Viên',
-	'3'=>'Quản kho'
+	'3' =>'Quản kho',
 ]);
 
 define('FEEDBACK_UNSEEN',0);
@@ -41,10 +41,11 @@ define('FBstatus',[
 ]);
 
 define('PAYMENT_METHOD',[
-	0 => 'Ship COD',
-	1 => 'Thannh toán bằng VISA',
-	2 => 'Thannh toán bằng Card',
-	3 => 'Thannh toán bằng Master Card'
+	0 => 'Visa',
+	1 => 'MasterCard',
+	2 => 'American Express',
+	3 => 'SHIP COD',
+	4 => 'Trực tiếp'
 ]);
 
 define('ARRAY_PRICE',[

@@ -1,4 +1,4 @@
-@extends('frontend.layout.nav2')
+@extends('frontend.layout.nav')
 
 @section('content')
 <script type="text/javascript">
@@ -23,8 +23,8 @@
         <a class="btn btn-success">KẾT QUẢ</a>
         <select id="dynamic_select" style="float: right; height: 35px; font-weight: bold;">
             <option>SẮP XẾP THEO GIÁ:</option>
-            <option value="/frontend/list/{{$id}}/{{$value=1}}">Giá: Từ cao xuống thấp</option>
-            <option value="/frontend/list/{{$id}}/{{$value=2}}">Giá: Từ thấp đến cao</option>
+            <option value="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price}}/{{$energy}}">Giá: Từ cao xuống thấp</option>
+            <option value="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=2}}/{{$price}}/{{$energy}}">Giá: Từ thấp đến cao</option>
         </select>
     </div>
     @foreach($products as $product)

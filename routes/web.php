@@ -24,13 +24,24 @@ Route::get('/list',function(){
 });
 */
 Route::group(['prefix' => 'frontend'], function () {
-	Route::get('/','FrontentController@index');
-	Route::get('list','FrontentController@list');
-	Route::get('products','FrontentController@products');
-	Route::get('details','FrontentController@details');
-	Route::get('checkout','FrontentController@checkout');
-	Route::get('cart','FrontentController@cart');
-	Route::get('thankyou','FrontentController@thankyou');
+	Route::get('/','FrontentController@index')->name('index');
+	Route::get('register','FrontentController@register')->name('cus.register');
+	Route::get('login','FrontentController@login')->name('cus.login');
+	
+	Route::get('products/{id_category}/{id_trademark}/{value}/{price}/{energy}','FrontentController@products')->name('products');
+	Route::get('list/{id}/{value}','FrontentController@list')->name('list');
+	Route::get('search','FrontentController@search')->name('search');
+
+
+	Route::get('details/{id}','FrontentController@details')->name('details');
+
+	Route::get('cart','FrontentController@cart')->name('cart.index');
+	Route::post('cart/store','FrontentController@cartstore')->name('cart.store');
+	Route::delete('cart/{id}','FrontentController@cartdelete')->name('cart.delete');
+	Route::post('cart/update','FrontentController@cartupdate')->name('cart.update');
+
+	Route::post('checkout', 'FrontentController@checkout')->name('checkout');
+	Route::get('thankyou','FrontentController@thankyou')->name('thankyou');
 });
 
 
