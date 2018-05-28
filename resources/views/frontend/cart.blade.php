@@ -69,8 +69,8 @@
 							<td></td>
 							<td class="hidden-xs text-center">
 										Tổng: {{Cart::subtotal()}}<br>
-										VAT (10%): {{Cart::tax()}}<br>
-								<h4 class="price"><span>Tổng cộng: {{Cart::total()}}</span></h4>
+                                        Giảm giá: {{$discount}}%
+								<h4 class="price"><span>Tổng cộng: {{Cart::total()-Cart::total()*$discount/100}}</span></h4>
 							</td>							
 						</tr>
 					</tfoot>

@@ -10,6 +10,9 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Order;
+use App\Models\Feedback;
+use App\Models\Support;
+use App\Models\Event;
 use App\Models\OrderProduct;
 use Illuminate\Support\collection;
 use Session;
@@ -23,10 +26,12 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         $product    = Product::inRandomOrder()->take(8)->get();
         return view('frontend.trangchu')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
             'product'    => $product,
         ]);
     }
@@ -34,71 +39,96 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         return view('frontend.register')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
         ]);
     }
     public function login()
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         return view('frontend.login')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
         ]);
     }
-    public function products($id_category, $id_trademark, $value, $price, $energy)
+    public function products(Request $request)
     {
+        $supports   = Support::all();
+        $products = Product::all();
+        $stt = 0;
+        if($request->has('search_category') && $request->get('search_category') != 0){
+            $products = Product::searchCategory($request->get('search_category'));
+            $stt = 1;
+        }
+        if($request->has('search_trademark') && $request->get('search_trademark') != 0){
+            if($stt == 1){
+                $products = $products->searchTrademark($request->get('search_trademark'));
+            }else{
+                $products = Product::searchTrademark($request->get('search_trademark'));
+                $stt = 1;
+            }
+        }
+        if($request->has('search_price') && $request->get('search_price') != 0){
+             if($stt == 1){
+                $products = $products->searchPrice($request->get('search_price'));
+            }else{
+                $products = Product::searchPrice($request->get('search_price'));
+                $stt = 1;
+            }
+        }
+        if($request->has('search_energy') && $request->get('search_energy') != 0){
+             if($stt == 1){
+                $products = $products->searchEnergy($request->get('search_energy'));
+            }else{
+                $products = Product::searchEnergy($request->get('search_energy'));
+                $stt = 1;
+            }
+        }
+        if($request->has('search_chain') && $request->get('search_chain') != 0){
+             if($stt == 1){
+                $products = $products->searchChain($request->get('search_chain'));
+            }else{
+                $products = Product::searchChain($request->get('search_chain'));
+                $stt = 1;
+            }
+        }
+        if($request->has('search_case') && $request->get('search_case') != 0){
+             if($stt == 1){
+                $products = $products->searchCase($request->get('search_case'));
+            }else{
+                $products = Product::searchCase($request->get('search_case'));
+                $stt = 1;
+            }
+        }
+        if($stt == 1){
+            $products = $products->get();
+        }
+        $categories = Category::all();
         $trademarks = TradeMark::all();
-        $categories = Category::with('trademark')->get();
-        if ($value==1) {
-            if($energy==2){
-                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->orderBy('price', 'DESC')->get();
-            }
-            else{
-                $detail = ProductDetail::where('energy',$energy)->pluck('product_id')->toArray();
-                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->whereIn('id',$detail)->orderBy('price', 'DESC')->get();
-            }         
             return view('frontend.products')->with([
                     'trademarks' => $trademarks,
                     'categories' => $categories,
                     'products'   => $products,
-                    'id_category'=> $id_category,
-                    'id_trademark'=>$id_trademark,
-                    'value'      => $value,
-                    'energy'     => $energy,
+                    'supports'   => $supports,
             ]);
-        }
-        else{
-
-            if($energy==2){
-                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->orderBy('price', 'ASC')->get();
-            }
-            else{
-                $detail = ProductDetail::where('energy',$energy)->pluck('product_id')->toArray();
-                $products = Product::where('category_id',$id_category)->where('trade_mark_id',$id_trademark)->whereIn('id',$detail)->orderBy('price', 'ASC')->get();
-            }
-            return view('frontend.products')->with([
-                    'trademarks' => $trademarks,
-                    'categories' => $categories,
-                    'products'   => $products,
-                    'id_category'=> $id_category,
-                    'id_trademark'=>$id_trademark,
-                    'value'      => $value,
-                    'energy'     => $energy,
-            ]);
-        }
     }
     public function list($id, $value)
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         if ($value==2) {
             $products = Product::where('trade_mark_id',$id)->orderBy('price', 'ASC')->get();
             return view('frontend.list')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
             'products'   => $products,
             'id'         => $id,
         ]);
@@ -108,6 +138,7 @@ class FrontentController extends Controller
         return view('frontend.list')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
             'products'   => $products,
             'id'         => $id,
         ]);
@@ -117,7 +148,7 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
-
+        $supports   = Support::all();
         $request->validate([
             'query' => 'required|min:3',
         ]);
@@ -129,6 +160,7 @@ class FrontentController extends Controller
         return view('frontend.search-results')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
             'products'   => $products,
         ]);;
     }
@@ -140,6 +172,7 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         $products   = Product::find($id);
         if ($products->detail->total_qty>=10) {
             $tinhtrang = 'còn hàng';
@@ -153,6 +186,7 @@ class FrontentController extends Controller
         return view('frontend.details')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
             'products'   => $products,
             'tinhtrang'  => $tinhtrang,
         ]);
@@ -161,9 +195,23 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
+        $todayDate  = date("Y-m-d");
+        $events     = Event::all()->where('start_date','<=',$todayDate)->where('end_date','>=',$todayDate);
+        if(0==count($events)){
+            $discount = 0;
+        }
+        else{
+            foreach ($events as $events) {
+                $discount = $events->discount;
+            }
+        }
         return view('frontend.cart')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
+            'discount'     => $discount,
+            'todayDate'  => $todayDate,
         ]);
     }
     public function cartstore(Request $request)
@@ -180,7 +228,6 @@ class FrontentController extends Controller
         session()->flash('notif', 'ĐÃ ĐƯỢC THÊM VÀO GIỎ HÀNG');
         return redirect()->route('cart.index');
         }
-        session()->flash('notif', 'ĐÃ ĐƯỢC THÊM VÀO GIỎ HÀNG');
         return back()->with('notif', 'SẢN PHẨM ĐÃ HẾT HÀNG');
     }
     public function cartdelete($id)
@@ -197,17 +244,28 @@ class FrontentController extends Controller
     }
     public function checkout(Request $request)
     {   
+        $todayDate  = date("Y-m-d");
+        $events     = Event::all()->where('start_date','<=',$todayDate)->where('end_date','>=',$todayDate);
+        if(0==count($events)){
+            $discount = 0;
+        }
+        else{
+            foreach ($events as $events) {
+                $discount = $events->discount;
+            }
+        }
+
         $item = Cart::content();
         $customer = new Order;
         $customer->customer_name = $request->customer_name;
         $customer->customer_email = $request->customer_email;
         $customer->customer_address = $request->customer_address;
         $customer->customer_phone = $request->customer_phone;
-        $customer->billing_discount = 20;
+        $customer->billing_discount = $discount;
         $customer->billing_discount_code = 'aut'; 
         $customer->billing_subtotal = Cart::subtotal();
-        $customer->billing_tax = 10.00;
-        $customer->billing_total = Cart::total();
+        $customer->billing_tax = 0;
+        $customer->billing_total = Cart::total()-Cart::total()*$discount/100;
         $customer->payment_method = $request->payment;
         $customer->save();
 
@@ -216,7 +274,7 @@ class FrontentController extends Controller
             $oderproduct->order_id = $customer->id;
             $oderproduct->product_id = $item->id;
             $oderproduct->qty = $item->qty;
-            $oderproduct->discount = 0; 
+            $oderproduct->discount = $discount; 
             $oderproduct->save();
 
 
@@ -230,9 +288,74 @@ class FrontentController extends Controller
     {
         $trademarks = TradeMark::all();
         $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
         return view ('frontend.thankyou')->with([
             'trademarks' => $trademarks,
             'categories' => $categories,
+            'supports'   => $supports,
+        ]);
+    }
+    public function feedbacks(Request $request)
+    {
+        $feedback = new Feedback;
+        $feedback->username = $request->username;
+        $feedback->email    = $request->email;
+        $feedback->content  = $request->content;
+        $feedback->status   = 0;
+        $feedback->save();
+
+        return redirect()->route('index');
+    }
+    public function supports($id)
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
+        $spcontent  = Support::find($id);
+        return view('frontend.supports')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'supports'   => $supports,
+            'spcontent'  => $spcontent,
+        ]);
+    }
+    public function events()
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
+        $events   = Event::orderBy('id','DESC')->get();
+        return view('frontend.events')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'supports'   => $supports,
+            'events'   => $events,
+        ]);
+    }
+    public function eventdetail($id)
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
+        $events   = Event::all();
+        $event   = Event::find($id);
+        return view('frontend.eventdetail')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'supports'   => $supports,
+            'events'     => $events,
+            'event'      => $event,
+        ]);
+    }
+    public function shoplocation()
+    {
+        $trademarks = TradeMark::all();
+        $categories = Category::with('trademark')->get();
+        $supports   = Support::all();
+        return view('frontend.shoplocation')->with([
+            'trademarks' => $trademarks,
+            'categories' => $categories,
+            'supports'   => $supports,
         ]);
     }
 }

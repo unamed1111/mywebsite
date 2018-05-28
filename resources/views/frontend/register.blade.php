@@ -1,6 +1,6 @@
 @extends('frontend.layout.master')
 @section('underbanner')
-            <form method="POST" action="{{ route('post.cus.register') }}">
+            <form method="POST" action="#">
                 <div class="col-md-6 col-md-offset-3" style="margin-top: 30px;">
                     <div class="panel panel-info">
                         <div class="panel-heading">ĐĂNG KÝ</div>

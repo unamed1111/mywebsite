@@ -28,7 +28,7 @@ Route::group(['prefix' => 'frontend'], function () {
 	Route::get('register','FrontentController@register')->name('cus.register');
 	Route::get('login','FrontentController@login')->name('cus.login');
 	
-	Route::get('products/{id_category}/{id_trademark}/{value}/{price}/{energy}','FrontentController@products')->name('products');
+	Route::get('products','FrontentController@products')->name('products');
 	Route::get('list/{id}/{value}','FrontentController@list')->name('list');
 	Route::get('search','FrontentController@search')->name('search');
 
@@ -42,6 +42,12 @@ Route::group(['prefix' => 'frontend'], function () {
 
 	Route::post('checkout', 'FrontentController@checkout')->name('checkout');
 	Route::get('thankyou','FrontentController@thankyou')->name('thankyou');
+
+	Route::post('feedbacks','FrontentController@feedbacks')->name('feedbacks');
+	Route::get('supports/{id}','FrontentController@supports')->name('supports');
+	Route::get('events','FrontentController@events')->name('events');
+	Route::get('events/{id}','FrontentController@eventdetail')->name('eventdetail');
+	Route::get('shoplocation','FrontentController@shoplocation')->name('shoplocation');
 });
 
 

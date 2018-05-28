@@ -184,11 +184,11 @@ h1
 }
 .box1
 {
-	padding:30px 20px 20px 30px;
+	padding:30px 10px 20px 30px;
 }
 .leftTexttitle
 {
-	width:130px;
+	width:200px;
 	float:left;
 	font-size:16px;
 	font-weight:bold;
@@ -198,7 +198,7 @@ h1
 }
 .leftText
 {
-	width:230px;
+	width:200px;
 	float:left;
 	padding:10px 0px 0px 10px;
 }
@@ -209,7 +209,7 @@ a.lefText
 }
 .box2
 {
-	padding:20px 20px 20px 30px;
+	padding:0px 32px 0px 20px;
 }
 .whiteText
 {
@@ -264,12 +264,12 @@ a.lefText
 {
 	margin:0px;
 	padding:0px 0px 0px 0px;
-	width:400px;
+	width:200px;
 	float:left;
 }
 .downloadText
 {
-	width:400px;
+	width:200px;
 	color:#ADADAD;
 	padding:10px 0px 10px 0px;
 	text-align:justify;
@@ -279,7 +279,7 @@ a.lefText
 {
 	margin:0px;
 	padding:20px 0px 0px 0px;
-	width:200px;
+	width:150px;
 	float:right;
 }
 .productContainer
@@ -357,6 +357,17 @@ a.lefText
     border-radius: 0px;
     text-align: center;
     height: 325px;
+}
+
+.shoplocation
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: none;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+    text-align: center;
+    height: 200px;
 }
 
 .thank-you-section {
@@ -638,7 +649,7 @@ a.lefText
 /******************************************************/
 /*****              CART                               */
 .cart-box{
-     position: fixed;
+  position: fixed;
   top: 40px;
   right: 60px;
   width: 60px;
@@ -945,8 +956,37 @@ input:checked + label {
   }
 }
 
+/*          FEEDBACK          */
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
 
+html{background:#2F3238; }
 
+.feedback-button {height:40px; border:solid 3px #CCCCCC; background:#333; width:100px; line-height:32px; -webkit-transform:rotate(-90deg); font-weight:600; color:white; transform:rotate(-90deg);  -ms-transform:rotate(-90deg);  -moz-transform:rotate(-90deg); text-align:center; font-size:17px; position:fixed; right:-40px; top:45%; font-family: "Roboto", helvetica, arial, sans-serif; z-index:999; }
+
+#feedback-main{
+display:none;
+  float:left;
+  padding-top:0px;
+  position: fixed;
+  top: 100px;
+  left: 45px;
+  z-index: 2147483000;
+}
+
+#feedback-div {
+  background-color:rgba(72,72,72,0.4);
+  padding-left:35px;
+  padding-right:25px;
+  padding-top:35px;
+  padding-bottom:35px;
+  float: center;
+  left: 50%;
+  position: absolute;
+  margin-top:30px;
+  margin-left: -240px;
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+}
 
 /* inner pages css start */
 h1.inner{font:20px tahoma, Arial; color:#000; font-weight:100; margin:0px; padding:8px 0px 10px 0; text-decoration:none}

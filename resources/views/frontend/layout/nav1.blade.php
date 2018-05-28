@@ -27,33 +27,33 @@
 </script>
 <script type="text/javascript">
   var slideIndex = 1;
-  showSlides(slideIndex);
+showSlides(slideIndex);
 
-  // Next/previous controls
-  function plusSlides(n) {
-    showSlides(slideIndex += n);
-  }
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
 
-  // Thumbnail image controls
-  function currentSlide(n) {
-    showSlides(slideIndex = n);
-  }
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
 
-  function showSlides(n) {
-    var i;
-    var slides = document.getElementsByClassName("mySlides");
-    var dots = document.getElementsByClassName("dot");
-    if (n > slides.length) {slideIndex = 1} 
-    if (n < 1) {slideIndex = slides.length}
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none"; 
-    }
-    for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
-    }
-    slides[slideIndex-1].style.display = "block"; 
-    dots[slideIndex-1].className += " active";
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1} 
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none"; 
   }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block"; 
+  dots[slideIndex-1].className += " active";
+}
 </script>
 <script type="text/javascript">
       function toggle_visibility() {
@@ -64,7 +64,6 @@
           e.style.display = 'block';
     }
 </script>
-
 </head>
 <body>
   <div id="wrapper">
@@ -150,62 +149,8 @@
           <div class="bottomBox">
             <div class="leftBox">
 
-
-              <div class="box1">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>Thương hiệu</div>
-                  @foreach($trademarks as $trademarks)
-                  <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">{{$trademarks->trademark_name}}</a></div>
-                  @endforeach
-                <div class="clear"></div>
-              </div>
-
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>Khoảng giá</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dưới 100 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 100 - 300 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 300 - 500 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Từ 500 triệu</a></div>
-                <div class="clear"></div>
-              </div>
-
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>năng lượng</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Đồng hồ cơ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Đồng hồ điện tử</a></div>
-                <div class="clear"></div>
-              </div>
-
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại dây</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây da</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Thép không gỉ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ vàng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ đồng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Cao su</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây nhựa</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây vải, dù</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Hợp kim thép</a></div>
-                <div class="clear"></div>
-              </div>
-
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại vỏ</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Thép không gỉ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ vàng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Vàng nguyên khối</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ đồng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Cao su</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Vỏ nhựa</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Hợp kim thép</a></div>
-                <div class="clear"></div>
-              </div>
-
-
-              <div class="clear"></div>
+              @yield('leftbox')
+              
             </div>
             <div class="workZoneRight">
               <div class="rightBox inner">
@@ -224,7 +169,11 @@
       <div class="clear"></div>
     </div>
   </div>
-   
+
+
+<button id="popup" class="feedback-button" onclick="toggle_visibility()">Feedback</button>
+<script src="_include/js/feedback.js"></script>
+    <div class="clear"></div>
 
 <div class="footer">
   <div class="footer1">
@@ -242,7 +191,7 @@
           <h2>Home</h2>
           <p>
             <i class="fa fa-home"></i>    <a href="{{ route('index') }}">Trang chủ</a><br>
-            <i class="fa fa-user-o"></i>    <a href="{{ route('eventdetail',3) }}">Thông tin chung</a><br>          
+            <i class="fa fa-user-o"></i>    <a href="{{ route('eventdetail',5) }}">Thông tin chung</a><br>          
             <i class="fa fa-star"></i>    <a href="{{ route('events') }}">Tin tức & Sự kiên</a><br>
             <i class="fa fa-map-marker"></i>    <a href="{{ route('shoplocation') }}"> Hệ thống cửa hàng</a><br>
             <i class="fa fa-phone"></i>    <a href="#">Liên hệ</a><br>
@@ -286,16 +235,20 @@
 
 
     
-  </div>
+</div>
+
+  <div class="class"></div>
+
+</div>
   <div class="cart-box" id="Normal">
     <a class="btn btn-success btn-circle btn-xl" href="{{route('cart.index')}}">
-      <i class="fa fa-shopping-cart"></i>
-      <span class="badge badge-light">{{Cart::count()}}</span>
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge badge-light">{{Cart::count()}}</span>
     </a>
-  </div>
+    </div>
 
 
-  <div id="feedback-main" class="col-md-12">
+    <div id="feedback-main" class="col-md-12">
       <div id="feedback-div">
         
       <form method="post" class="form-horizontal" action="{{ route('feedbacks') }}">
