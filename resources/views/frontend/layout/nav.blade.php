@@ -55,7 +55,15 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-
+<script type="text/javascript">
+      function toggle_visibility() {
+       var e = document.getElementById('feedback-main');
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+</script>
 </head>
 <body>
   <div id="wrapper">
@@ -123,6 +131,11 @@ function showSlides(n) {
                       </ul>
                   </li> 
                 @endforeach
+                <li class="dropdown">
+                  <a href="#">
+                    <div class="bibau" style="color: white; font-weight: bold;">tin tức & sự kiện</div>
+                  </a>
+                </li>
               </ul>
           </div>
         </div>
@@ -146,50 +159,41 @@ function showSlides(n) {
               </div>
 
 
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>Khoảng giá</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=2}}/{{$energy}}" class="boldText" style="color: black;">Dưới 100 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=3}}/{{$energy}}" class="boldText" style="color: black;">Từ 100 - 300 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=4}}/{{$energy}}" class="boldText" style="color: black;">Từ 300 - 500 triệu</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value=1}}/{{$price=5}}/{{$energy}}" class="boldText" style="color: black;">Từ 500 triệu</a></div>
-                <div class="clear"></div>
+              <div class="box2 form-group">
+                  <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>khoảng giá</div>
+                  <select id="search_price" class="form-control" style="height: 35px; font-weight: bold;">
+                          @foreach(ARRAY_PRICE as $key => $value)
+                          <option value="{{$key}}" {{ request()->query('search_price') == $key ? "selected" : "" }}>{{$value}}</option>
+                          @endforeach
+                  </select>
               </div>
 
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>năng lượng</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value}}/{{$price}}/{{$energy=0}}" class="boldText" style="color: black;">Đồng hồ cơ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="/frontend/products/{{$id_category}}/{{$id_trademark}}/{{$value}}/{{$price}}/{{$energy=1}}" class="boldText" style="color: black;">Đồng hồ điện tử</a></div>
-                <div class="clear"></div>
+              <div class="box2 form-group">
+                  <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>năng lượng</div>
+                  <select id="search_energy" class="form-control" style="height: 35px; font-weight: bold;">
+                          @foreach(WATCH_ENERGY as $key => $value)
+                          <option value="{{$key}}" {{ request()->query('search_energy') == $key ? "selected" : "" }}>{{$value}}</option>
+                          @endforeach
+                  </select>
               </div>
 
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại dây</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây da</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Thép không gỉ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ vàng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ đồng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Cao su</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây nhựa</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Dây vải, dù</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Hợp kim thép</a></div>
-                <div class="clear"></div>
+              <div class="box2 form-group">
+                  <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại dây</div>
+                  <select id="search_chain" class="form-control" style="height: 35px; font-weight: bold;">
+                          @foreach(WATCH_CHAIN as $key => $value)
+                          <option value="{{$key}}" {{ request()->query('search_chain') == $key ? "selected" : "" }}>{{$value}}</option>
+                          @endforeach
+                  </select>
               </div>
 
-
-              <div class="box2">
-                <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại vỏ</div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Thép không gỉ</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ vàng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Vàng nguyên khối</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Mạ đồng</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Cao su</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Vỏ nhựa</a></div>
-                <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">Hợp kim thép</a></div>
-                <div class="clear"></div>
+              <div class="box2 form-group">
+                  <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại vỏ</div>
+                  <select id="search_case" class="form-control" style="height: 35px; font-weight: bold;">
+                          @foreach(WATCH_CASE as $key => $value)
+                          <option value="{{$key}}" {{ request()->query('search_case') == $key ? "selected" : "" }}>{{$value}}</option>
+                          @endforeach
+                  </select>
               </div>
-
 
               <div class="clear"></div>
             </div>
@@ -212,74 +216,120 @@ function showSlides(n) {
   </div>
    
 
+   <button id="popup" class="feedback-button" onclick="toggle_visibility()">Feedback</button>
+<script src="_include/js/feedback.js"></script>
+    <div class="clear"></div>
+
 <div class="footer">
   <div class="footer1">
-  <div class="container-fluid">
-    
-    <div class="container ">
-    <div class="row">
-      <div class="col-sm-4">
-        <h2>About Us</h2><p>
-                             <div class="myframegmap"> 
-                             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14900.82102572999!2d105.78793714999999!3d20.9844078!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33f9723553ecff7d!2zQ28ub3BtYXJ0IEjDoCDEkMO0bmc!5e0!3m2!1svi!2s!4v1527061634905" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                      </div></p><br>
-      </div>
-      <div class="col-sm-3">
-        <h2>Home</h2>
-        <p>
-          <i class="fa fa-home"></i>    <a href="#"> Home</a><br>
-          <i class="fa fa-user-o"></i>    <a href="#"> About Us</a><br>
-          <i class="fa fa-map-marker"></i>    <a href="#"> Contact Us</a><br>
-          <i class="fa fa-briefcase"></i>    <a href="#"> Services</a><br>
-          <i class="fa fa-question-circle"></i>    <a href="#"> Term & Conditions</a><br><br>
-
-
-        </p>
-
-
-      </div>
-      <div class="col-sm-2">
-        <h2>Contact Us</h2>
-        <p >
-         
-          <i class="fa fa-phone"></i>    <a href="tel:0123456789"> +0123456789</a><br>
-          <i class="fa fa-envelope"></i>    <a href="mailto:abc@abc.com"> abc@abc.com</a><br>
-          <i class="fa fa-map-marker"></i>     A-101 Delhi, India
-        </p>
-          
-        <br>
-      </div>
-    </div>
-      <div class="clear30"></div>
-  </div>
-  </div>
-  </div>
-
-
-  <div class="footer2">
     <div class="container-fluid">
-    <div class="container">
+      
+      <div class="container ">
       <div class="row">
+        <div class="col-sm-3">
+          <h2>Đại lý chính thức</h2><p>
+                               <div class="myframegmap"> 
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14900.82102572999!2d105.78793714999999!3d20.9844078!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33f9723553ecff7d!2zQ28ub3BtYXJ0IEjDoCDEkMO0bmc!5e0!3m2!1svi!2s!4v1527061634905" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div><br>
+        </div>
+        <div class="col-sm-3">
+          <h2>Home</h2>
+          <p>
+            <i class="fa fa-home"></i>    <a href="{{ route('index') }}">Trang chủ</a><br>
+            <i class="fa fa-user-o"></i>    <a href="{{ route('eventdetail',5) }}">Thông tin chung</a><br>          
+            <i class="fa fa-star"></i>    <a href="{{ route('events') }}">Tin tức & Sự kiên</a><br>
+            <i class="fa fa-map-marker"></i>    <a href="{{ route('shoplocation') }}"> Hệ thống cửa hàng</a><br>
+            <i class="fa fa-phone"></i>    <a href="#">Liên hệ</a><br>
+
+
+          </p>
+
+
+        </div>
+        <div class="col-sm-3">
+          <h2>Hỗ trợ khách hàng</h2>
+          <p ><?php $stt = 1; ?>
+            @foreach($supports as $support)
+            <i>{{ $stt++ }}.</i><a href="{{ route('supports',$support->id) }}">{{$support->title}}</a><br>
+            @endforeach
+          </p>
+            
+          <br>
+        </div>
+      </div>
         <div class="clear30"></div>
-        <div class="col-sm-9 text-center"><p><strong>copyright © 2013-2018 All right reserved.</strong></p></div>
-        <div class="clear30"></div>
+    </div>
+    </div></div>
+
+
+    <div class="footer2">
+      <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="clear30"></div>
+          <div class="col-sm-9 text-center"><p><strong>copyright © 2013-2018 All right reserved.</strong></p></div>
+          <div class="clear30"></div>
+        </div>
+        
       </div>
       
     </div>
-    
   </div>
-</div>
 </div>
 <div class="class"></div>
 
 
     
-  </div>
+</div>
+
+  <div class="class"></div>
+
+</div>
   <div class="cart-box" id="Normal">
     <a class="btn btn-success btn-circle btn-xl" href="{{route('cart.index')}}">
-      <i class="fa fa-shopping-cart"></i>
-      <span class="badge badge-light">{{Cart::count()}}</span>
-        </a>
+        <i class="fa fa-shopping-cart"></i>
+        <span class="badge badge-light">{{Cart::count()}}</span>
+    </a>
     </div>
+
+
+    <div id="feedback-main" class="col-md-12">
+      <div id="feedback-div">
+        
+      <form method="post" class="form-horizontal" action="{{ route('feedbacks') }}">
+        @csrf
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">FEEDBACK</div>
+                        <div class="panel-body">
+                          <div class="form-group">
+                                <div class="col-md-12"><strong>HỌ TÊN:</strong></div>
+                                <div class="col-md-12">
+                                    <input id="username" class="form-control" name="username" type="text" required>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>EMAIL:</strong></div>
+                                <div class="col-md-12">
+                                    <input id="email" class="form-control" name="email" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>NỘI DUNG:</strong></div>
+                                <div class="col-md-12">
+                                    <textarea name="content" type="text" id="content" class="form-control" rows="4" required ></textarea>
+                                </div>
+                            </div>                                                                      
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-submit-fix" style="float: right;">GỬI</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+    </div>
+  </div>
 </body>
 </html>

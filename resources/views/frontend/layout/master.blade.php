@@ -27,34 +27,44 @@
 </script>
 <script type="text/javascript">
 	var slideIndex = 1;
-showSlides(slideIndex);
+	showSlides(slideIndex);
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
+	// Next/previous controls
+	function plusSlides(n) {
+	  showSlides(slideIndex += n);
+	}
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
+	// Thumbnail image controls
+	function currentSlide(n) {
+	  showSlides(slideIndex = n);
+	}
 
-function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1} 
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none"; 
-  }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex-1].style.display = "block"; 
-  dots[slideIndex-1].className += " active";
-}
+	function showSlides(n) {
+	  var i;
+	  var slides = document.getElementsByClassName("mySlides");
+	  var dots = document.getElementsByClassName("dot");
+	  if (n > slides.length) {slideIndex = 1} 
+	  if (n < 1) {slideIndex = slides.length}
+	  for (i = 0; i < slides.length; i++) {
+	      slides[i].style.display = "none"; 
+	  }
+	  for (i = 0; i < dots.length; i++) {
+	      dots[i].className = dots[i].className.replace(" active", "");
+	  }
+	  slides[slideIndex-1].style.display = "block"; 
+	  dots[slideIndex-1].className += " active";
+	}
 </script>
+<script type="text/javascript">
+	    function toggle_visibility() {
+       var e = document.getElementById('feedback-main');
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+</script>
+
 
 </head>
 <body>
@@ -118,11 +128,16 @@ function showSlides(n) {
 			          			</a>
 			          			<ul class="dropdown-menu" role="menu">
 			          			@foreach($category->trademark as $trademark)
-			            			<li><a href="/frontend/products/{{$category->id}}/{{$trademark->id}}/{{$value=1}}/{{$energy=2}}">{{$trademark->trademark_name}}</a></li>
+			            			<li><a href="{{ route('products') }}">{{$trademark->trademark_name}}</a></li>
 			          			@endforeach
 			          			</ul>
 			        		</li> 
 			        	@endforeach
+			        	<li class="dropdown">
+			        	<a href="{{ route('events') }}">
+			            	<div class="bibau" style="color: white; font-weight: bold;">tin tức & sự kiện</div>
+			          	</a>
+			          	</li>
 			      	</ul>
     			</div>
   			</div>
@@ -132,6 +147,10 @@ function showSlides(n) {
 		@yield('banner')
 		@yield('underbanner')
 		@yield('nav')
+
+		
+<button id="popup" class="feedback-button" onclick="toggle_visibility()">Feedback</button>
+<script src="_include/js/feedback.js"></script>
 		<div class="clear"></div>
 		
 
@@ -141,33 +160,32 @@ function showSlides(n) {
 			
 			<div class="container ">
 			<div class="row">
-				<div class="col-sm-4">
-				  <h2>About Us</h2><p>
+				<div class="col-sm-3">
+				  <h2>Đại lý chính thức</h2><p>
 		                           <div class="myframegmap"> 
 		                           	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14900.82102572999!2d105.78793714999999!3d20.9844078!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x33f9723553ecff7d!2zQ28ub3BtYXJ0IEjDoCDEkMO0bmc!5e0!3m2!1svi!2s!4v1527061634905" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-		                    </div></p><br>
+		                    </div><br>
 				</div>
 				<div class="col-sm-3">
 					<h2>Home</h2>
 					<p>
-						<i class="fa fa-home"></i>    <a href="#"> Home</a><br>
-						<i class="fa fa-user-o"></i>    <a href="#"> About Us</a><br>
-						<i class="fa fa-map-marker"></i>    <a href="#"> Contact Us</a><br>
-						<i class="fa fa-briefcase"></i>    <a href="#"> Services</a><br>
-						<i class="fa fa-question-circle"></i>    <a href="#"> Term & Conditions</a><br><br>
+						<i class="fa fa-home"></i>    <a href="{{ route('index') }}">Trang chủ</a><br>
+						<i class="fa fa-user-o"></i>    <a href="{{ route('eventdetail',5) }}">Thông tin chung</a><br>					
+						<i class="fa fa-star"></i>    <a href="{{ route('events') }}">Tin tức & Sự kiên</a><br>
+						<i class="fa fa-map-marker"></i>    <a href="{{ route('shoplocation') }}"> Hệ thống cửa hàng</a><br>
+						<i class="fa fa-phone"></i>    <a href="#">Liên hệ</a><br>
 
 
 					</p>
 
 
 				</div>
-				<div class="col-sm-2">
-					<h2>Contact Us</h2>
-					<p >
-					 
-						<i class="fa fa-phone"></i>    <a href="tel:0123456789"> +0123456789</a><br>
-						<i class="fa fa-envelope"></i>    <a href="mailto:abc@abc.com"> abc@abc.com</a><br>
-						<i class="fa fa-map-marker"></i>     A-101 Delhi, India
+				<div class="col-sm-3">
+					<h2>Hỗ trợ khách hàng</h2>
+					<p ><?php $stt = 1; ?>
+						@foreach($supports as $support)
+						<i>{{ $stt++ }}.</i><a href="{{ route('supports',$support->id) }}">{{$support->title}}</a><br>
+						@endforeach
 					</p>
 						
 					<br>
@@ -201,5 +219,45 @@ function showSlides(n) {
 		    <span class="badge badge-light">{{Cart::count()}}</span>
 		</a>
     </div>
+
+
+    <div id="feedback-main" class="col-md-12">
+	  	<div id="feedback-div">
+	    	
+			<form method="post" class="form-horizontal" action="{{ route('feedbacks') }}">
+				@csrf
+                <div class="col-md-12">
+                    <div class="panel panel-info">
+                        <div class="panel-heading text-center">FEEDBACK</div>
+                        <div class="panel-body">
+                        	<div class="form-group">
+                                <div class="col-md-12"><strong>HỌ TÊN:</strong></div>
+                                <div class="col-md-12">
+                                    <input id="username" class="form-control" name="username" type="text" required>
+                                </div>
+                            </div>                            
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>EMAIL:</strong></div>
+                                <div class="col-md-12">
+                                    <input id="email" class="form-control" name="email" type="text" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12"><strong>NỘI DUNG:</strong></div>
+                                <div class="col-md-12">
+                                    <textarea name="content" type="text" id="content" class="form-control" rows="4" required ></textarea>
+                                </div>
+                            </div>                                                                      
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary btn-submit-fix" style="float: right;">GỬI</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+		</div>
+	</div>
 </body>
 </html>
