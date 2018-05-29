@@ -28,8 +28,9 @@ Route::group(['prefix' => 'frontend'], function () {
 	Route::get('register','FrontentController@register')->name('cus.register');
 	Route::get('login','FrontentController@login')->name('cus.login');
 	
-	Route::get('products','FrontentController@products')->name('products');
-	Route::get('list/{id}/{value}','FrontentController@list')->name('list');
+	Route::get('products/{id}','FrontentController@products')->name('products');
+	// Route::get('list/{id}/{value}','FrontentController@list')->name('list');
+	// Route::get('list/trademarks/{id}','FrontentController@listTrademark')->name('listTradeMark');
 	Route::get('search','FrontentController@search')->name('search');
 
 

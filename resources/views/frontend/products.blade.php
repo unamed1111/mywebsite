@@ -18,25 +18,14 @@
       });
     });
 </script>
-<script>
-        $(function(){
-            $("#search_category,#search_trademark,#search_price,#search_energy,#search_chain,#search_case").on('change', function(){
-                  var url = "{!! http_build_query(Request::except('search_category','search_trademark')) !!}";
-                if (url.length > 0) {
-                    location.href = window.location.pathname + "?" + url + "&search_category=" +$('#search_category').val() +"&search_trademark=" +$('#search_trademark').val() +"&search_price=" +$('#search_price').val() +"&search_energy=" +$('#search_energy').val() +"&search_chain=" +$('#search_chain').val() +"&search_case=" +$('#search_case').val();
-                } else {
-                    location.href = window.location.pathname + "?search_category=" +$('#search_category').val() +"&search_trademark=" +$('#search_trademark').val() +"&search_price=" +$('#search_price').val() +"&search_energy=" +$('#search_energy').val() +"&search_chain=" +$('#search_chain').val() +"&search_case=" +$('#search_case').val();
-                }
-            });
-        });
-    </script>
+
 <div class="underbanner">
     <div class="well well-sm">
         <a class="btn btn-success">KẾT QUẢ</a>
-        <select id="dynamic_select" style="float: right; height: 35px; font-weight: bold;">
-            <option>SẮP XẾP THEO GIÁ:</option>
-            <option value="#">Giá: Từ cao xuống thấp</option>
-            <option value="#">Giá: Từ thấp đến cao</option>
+        <select id="orderBy" style="float: right; height: 35px; font-weight: bold;">
+            <option value="" {{ request()->query('orderBy') == "" ? "selected" : "" }}>SẮP XẾP THEO GIÁ:</option>
+            <option value="ASC" {{ request()->query('orderBy') == "ASC" ? "selected" : "" }}>Giá: Từ cao xuống thấp</option>
+            <option value="DESC" {{ request()->query('orderBy') == "DESC" ? "selected" : "" }}>Giá: Từ thấp đến cao</option>
         </select>
     </div>
     @foreach($products as $product)
@@ -57,4 +46,18 @@
 </div>
 <div class="clear"></div>
 
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+        $("#search_price,#search_energy,#search_chain,#search_case,#orderBy").on('change', function(){
+              var url = "{!! http_build_query(Request::except('search_price','search_energy','search_chain','search_case','orderBy')) !!}";
+            if (url.length > 0) {
+                location.href = window.location.pathname + "?" + url +"&search_price=" +$('#search_price').val() +"&search_energy=" +$('#search_energy').val() +"&search_chain=" +$('#search_chain').val() +"&search_case=" +$('#search_case').val() +"&orderBy=" +$('#orderBy').val();
+            } else {
+                location.href = window.location.pathname + "?search_price=" +$('#search_price').val() +"&search_energy=" +$('#search_energy').val() +"&search_chain=" +$('#search_chain').val() +"&search_case=" +$('#search_case').val() +"&orderBy=" +$('#orderBy').val();
+            }
+        });
+    });
+</script>
 @endsection

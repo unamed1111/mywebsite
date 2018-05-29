@@ -12,6 +12,6 @@ $factory->define(App\Models\ProductDetail::class, function (Faker $faker) {
         'guarantee' => $faker->numberBetween($min = 5, $max = 10),
         'total_qty'=>$faker->numberBetween($min = 50, $max = 200),
         'glass'=>$faker->word,
-        'image'=> json_encode(['/images/home/girl1.jpg','/images/home/girl2.jpg','/images/home/girl3.jpg'])
+        'image'=> json_encode(['/images/11.jpg','/images/12.jpg','/images/13.jpg'])
     ];
 });

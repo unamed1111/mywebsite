@@ -115,7 +115,7 @@ function showSlides(n) {
                     </a>
                     <ul class="dropdown-menu" role="menu">
                     @foreach($trademarks as $trademark)
-                      <li><a href="{{ route('list',[$trademark->id,1]) }}">{{$trademark->trademark_name}}</a></li>
+                      <li><a href="{{ route('products',$trademark->id) }}">{{$trademark->trademark_name}}</a></li>
                     @endforeach
                     </ul>
                 </li>
@@ -126,7 +126,7 @@ function showSlides(n) {
                       </a>
                       <ul class="dropdown-menu" role="menu">
                       @foreach($category->trademark as $trademark)
-                        <li><a href="/frontend/products/{{$category->id}}/{{$trademark->id}}/{{$value=1}}/{{$energy=2}}">{{$trademark->trademark_name}}</a></li>
+                        <li><a href="/frontend/products/{{$trademark->id}}?search_category={{$category->id}}">{{$trademark->trademark_name}}</a></li>
                       @endforeach
                       </ul>
                   </li> 
@@ -153,7 +153,7 @@ function showSlides(n) {
               <div class="box1">
                 <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>Thương hiệu</div>
                   @foreach($trademarks as $trademarks)
-                  <div class="leftText"><span class="fa fa-minus-square"></span><a href="#" class="boldText" style="color: black;">{{$trademarks->trademark_name}}</a></div>
+                  <div class="leftText"><span class="fa fa-minus-square"></span><a href="{{route('products',$trademarks->id)}}" class="boldText" style="color: black;">{{$trademarks->trademark_name}}</a></div>
                   @endforeach
                 <div class="clear"></div>
               </div>
@@ -171,7 +171,7 @@ function showSlides(n) {
               <div class="box2 form-group">
                   <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>năng lượng</div>
                   <select id="search_energy" class="form-control" style="height: 35px; font-weight: bold;">
-                          @foreach(WATCH_ENERGY as $key => $value)
+                          @foreach(array_prepend(WATCH_ENERGY, 'Chọn năng lượng máy', -1 ) as $key => $value)
                           <option value="{{$key}}" {{ request()->query('search_energy') == $key ? "selected" : "" }}>{{$value}}</option>
                           @endforeach
                   </select>
@@ -180,7 +180,7 @@ function showSlides(n) {
               <div class="box2 form-group">
                   <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại dây</div>
                   <select id="search_chain" class="form-control" style="height: 35px; font-weight: bold;">
-                          @foreach(WATCH_CHAIN as $key => $value)
+                          @foreach(array_prepend(WATCH_CHAIN , 'Chọn năng loại dây', -1) as $key => $value)
                           <option value="{{$key}}" {{ request()->query('search_chain') == $key ? "selected" : "" }}>{{$value}}</option>
                           @endforeach
                   </select>
@@ -189,7 +189,7 @@ function showSlides(n) {
               <div class="box2 form-group">
                   <div class="leftTexttitle" style="color: black;"><span class="fa fa-plus-square"></span>loại vỏ</div>
                   <select id="search_case" class="form-control" style="height: 35px; font-weight: bold;">
-                          @foreach(WATCH_CASE as $key => $value)
+                          @foreach(array_prepend(WATCH_CASE,  'Chọn năng loại vỏ', -1) as $key => $value)
                           <option value="{{$key}}" {{ request()->query('search_case') == $key ? "selected" : "" }}>{{$value}}</option>
                           @endforeach
                   </select>
@@ -332,4 +332,5 @@ function showSlides(n) {
     </div>
   </div>
 </body>
+@yield('js')
 </html>

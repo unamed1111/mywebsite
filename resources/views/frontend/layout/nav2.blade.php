@@ -116,7 +116,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu">
                     @foreach($trademarks as $trademark)
-                      <li><a href="{{ route('list',[$trademark->id,1]) }}">{{$trademark->trademark_name}}</a></li>
+                      <li><a href="{{ route('products',$trademark->id) }}">{{$trademark->trademark_name}}</a></li>
                     @endforeach
                     </ul>
                 </li>
@@ -127,7 +127,7 @@
                       </a>
                       <ul class="dropdown-menu" role="menu">
                       @foreach($category->trademark as $trademark)
-                        <li><a href="/frontend/products/{{$category->id}}/{{$trademark->id}}/{{$value=1}}/{{$energy=2}}">{{$trademark->trademark_name}}</a></li>
+                        <li><a href="/frontend/products/{{$trademark->id}}?search_category={{$category->id}}">{{$trademark->trademark_name}}</a></li>
                       @endforeach
                       </ul>
                   </li> 

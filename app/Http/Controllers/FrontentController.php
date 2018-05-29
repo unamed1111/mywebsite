@@ -57,93 +57,40 @@ class FrontentController extends Controller
             'supports'   => $supports,
         ]);
     }
-    public function products(Request $request)
+    public function products($id, Request $request)
     {
-        $supports   = Support::all();
-        $products = Product::all();
-        $stt = 0;
+        $products = Product::where('trade_mark_id',$id);
         if($request->has('search_category') && $request->get('search_category') != 0){
             $products = Product::searchCategory($request->get('search_category'));
-            $stt = 1;
         }
-        if($request->has('search_trademark') && $request->get('search_trademark') != 0){
-            if($stt == 1){
-                $products = $products->searchTrademark($request->get('search_trademark'));
-            }else{
-                $products = Product::searchTrademark($request->get('search_trademark'));
-                $stt = 1;
-            }
-        }
+        
         if($request->has('search_price') && $request->get('search_price') != 0){
-             if($stt == 1){
                 $products = $products->searchPrice($request->get('search_price'));
-            }else{
-                $products = Product::searchPrice($request->get('search_price'));
-                $stt = 1;
-            }
         }
-        if($request->has('search_energy') && $request->get('search_energy') != 0){
-             if($stt == 1){
+        if($request->has('search_energy') && $request->get('search_energy') != -1){
                 $products = $products->searchEnergy($request->get('search_energy'));
-            }else{
-                $products = Product::searchEnergy($request->get('search_energy'));
-                $stt = 1;
-            }
         }
-        if($request->has('search_chain') && $request->get('search_chain') != 0){
-             if($stt == 1){
+        if($request->has('search_chain') && $request->get('search_chain') != -1){
                 $products = $products->searchChain($request->get('search_chain'));
-            }else{
-                $products = Product::searchChain($request->get('search_chain'));
-                $stt = 1;
-            }
         }
-        if($request->has('search_case') && $request->get('search_case') != 0){
-             if($stt == 1){
+        if($request->has('search_case') && $request->get('search_case') != -1){
                 $products = $products->searchCase($request->get('search_case'));
-            }else{
-                $products = Product::searchCase($request->get('search_case'));
-                $stt = 1;
-            }
         }
-        if($stt == 1){
-            $products = $products->get();
+        if($request->has('orderBy') && $request->get('orderBy') != null){
+                $products = $products->orderBy('price',$request->get('orderBy'));
         }
+        $products = $products->get();
         $categories = Category::all();
         $trademarks = TradeMark::all();
-            return view('frontend.products')->with([
-                    'trademarks' => $trademarks,
-                    'categories' => $categories,
-                    'products'   => $products,
-                    'supports'   => $supports,
-            ]);
-    }
-    public function list($id, $value)
-    {
-        $trademarks = TradeMark::all();
-        $categories = Category::with('trademark')->get();
         $supports   = Support::all();
-        if ($value==2) {
-            $products = Product::where('trade_mark_id',$id)->orderBy('price', 'ASC')->get();
-            return view('frontend.list')->with([
-            'trademarks' => $trademarks,
-            'categories' => $categories,
-            'supports'   => $supports,
-            'products'   => $products,
-            'id'         => $id,
+        return view('frontend.products')->with([
+                'trademarks' => $trademarks,
+                'categories' => $categories,
+                'products'   => $products,
+                'supports'   => $supports,
         ]);
-        }
-        else{
-        $products = Product::where('trade_mark_id',$id)->orderBy('price', 'DESC')->get();
-        return view('frontend.list')->with([
-            'trademarks' => $trademarks,
-            'categories' => $categories,
-            'supports'   => $supports,
-            'products'   => $products,
-            'id'         => $id,
-        ]);
-        }
     }
+    
     public function search(Request $request)
     {
         $trademarks = TradeMark::all();

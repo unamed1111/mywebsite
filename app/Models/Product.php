@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductDetail;
 
 class Product extends Model
 {
@@ -42,4 +43,23 @@ class Product extends Model
     {
         return $query->whereBetween('price', PRICE[$price]);
     }
+
+    public function scopeSearchEnergy($query,$energy)
+    {
+        $detail = ProductDetail::where('energy',$energy)->pluck('product_id')->toArray();
+        return $query->whereIn('id',$detail);
+    }
+
+    public function scopeSearchCase($query,$case)
+    {
+        $detail = ProductDetail::where('case',$case)->pluck('product_id')->toArray();
+        return $query->whereIn('id',$detail);
+    }
+
+    public function scopeSearchChain($query,$watch_chain)
+    {
+        $detail = ProductDetail::where('watch_chain',$watch_chain)->pluck('product_id')->toArray();
+        return $query->whereIn('id',$detail);
+    }
+
 }
